@@ -95,7 +95,7 @@ RubidiumAir/
 ---
 
 ## **📜 Лицензия**  
-Проект использует **MIT License** – подробности в [LICENSE](LICENSE).  
+Проект использует **GNU GPLv3** – подробности в [LICENSE](LICENSE).  
 
 ---
 
