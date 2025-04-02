@@ -1,0 +1,193 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\WpfApp2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|c:\\users\\user\\source\\repos\\wpfapp2\\wpfapp2\\swipemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\swipemenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|c:\\users\\user\\source\\repos\\wpfapp2\\wpfapp2\\swipemenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\swipemenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|c:\\users\\user\\source\\repos\\wpfapp2\\wpfapp2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|C:\\Users\\USER\\source\\repos\\WpfApp2\\wpfapp2\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|C:\\Users\\USER\\source\\repos\\WpfApp2\\wpfapp2\\model1.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\model1.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|WpfApp2||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|C:\\Users\\USER\\source\\repos\\WpfApp2\\wpfapp2\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|C:\\Users\\USER\\source\\repos\\WpfApp2\\wpfapp2\\airportstaffdbdataset.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\airportstaffdbdataset.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|C:\\Users\\USER\\source\\repos\\WpfApp2\\wpfapp2\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|C:\\Users\\USER\\source\\repos\\WpfApp2\\wpfapp2\\airportstaffdbdataset.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\airportstaffdbdataset.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|c:\\users\\user\\source\\repos\\wpfapp2\\wpfapp2\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{4CBD0B80-5EF9-4C06-8FD1-FFF99F9FFA2A}|WpfApp2\\WpfApp2.csproj|solutionrelative:wpfapp2\\properties\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "swipemenu.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\swipemenu.xaml.cs",
+              "RelativeDocumentMoniker": "WpfApp2\\swipemenu.xaml.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\swipemenu.xaml.cs",
+              "RelativeToolTip": "WpfApp2\\swipemenu.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T08:57:50.457Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "swipemenu.xaml",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\swipemenu.xaml",
+              "RelativeDocumentMoniker": "WpfApp2\\swipemenu.xaml",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\swipemenu.xaml",
+              "RelativeToolTip": "WpfApp2\\swipemenu.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-25T08:55:26.049Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "WpfApp2\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\MainWindow.xaml",
+              "RelativeToolTip": "WpfApp2\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-25T11:00:35.651Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Model1.Context.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\Model1.Context.cs",
+              "RelativeDocumentMoniker": "WpfApp2\\Model1.Context.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\Model1.Context.cs",
+              "RelativeToolTip": "WpfApp2\\Model1.Context.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T09:43:16.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Model1.Context.tt",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\Model1.Context.tt",
+              "RelativeDocumentMoniker": "WpfApp2\\Model1.Context.tt",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\Model1.Context.tt",
+              "RelativeToolTip": "WpfApp2\\Model1.Context.tt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-03-13T09:42:58.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AirportStaffDBDataSet.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\AirportStaffDBDataSet.Designer.cs",
+              "RelativeDocumentMoniker": "WpfApp2\\AirportStaffDBDataSet.Designer.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\AirportStaffDBDataSet.Designer.cs",
+              "RelativeToolTip": "WpfApp2\\AirportStaffDBDataSet.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFYRAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T09:38:53.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WpfApp2",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\WpfApp2.csproj",
+              "RelativeDocumentMoniker": "WpfApp2\\WpfApp2.csproj",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\WpfApp2.csproj",
+              "RelativeToolTip": "WpfApp2\\WpfApp2.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-02-25T11:01:37.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WpfApp2\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\MainWindow.xaml.cs",
+              "RelativeToolTip": "WpfApp2\\MainWindow.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T11:00:35.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\Model1.edmx",
+              "RelativeDocumentMoniker": "WpfApp2\\Model1.edmx",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "WpfApp2\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-03-13T09:18:53.946Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AirportStaffDBDataSet.xsd",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\AirportStaffDBDataSet.xsd",
+              "RelativeDocumentMoniker": "WpfApp2\\AirportStaffDBDataSet.xsd",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\WpfApp2\\WpfApp2\\AirportStaffDBDataSet.xsd",
+              "RelativeToolTip": "WpfApp2\\AirportStaffDBDataSet.xsd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2025-03-13T09:39:20.834Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
