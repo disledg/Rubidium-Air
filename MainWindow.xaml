@@ -1,0 +1,30 @@
+﻿<Window x:Class="Rubidium.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rubidium"
+        xmlns:uc="clr-namespace:Rubidium.UI.UC"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="1000"
+        Background="#e5e5df">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Column="1" Grid.Row="1" Fill="#39444d" RadiusX="15" RadiusY="15"/>
+        <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employeers" Command="{Binding AddFlightCommand}" Height="40" Margin="0,100,0,0" VerticalAlignment="Top"/>
+        <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Flights" Command="{Binding AddFlightCommand}" Height="40" Margin="0,145,0,0" VerticalAlignment="Top"/>
+        <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Baggages" Command="{Binding AddFlightCommand}" Height="40" Margin="0,195,0,0" VerticalAlignment="Top"/>
+        <uc:FlightsView Grid.Column="3" Grid.Row="1" />
+        <Label Content="Rubidium AIR" FontSize="26" FontFamily="Wattauchimma" Grid.Row="1" Grid.Column="1" Foreground="#e5e5df" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

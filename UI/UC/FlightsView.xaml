@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Rubidium.UI.UC.FlightsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Rubidium.UI.UC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <Button Content="Добавить рейс" 
+            Command="{Binding AddFlightCommand}" 
+            Margin="10" Width="120"/>
+
+        <DataGrid ItemsSource="{Binding Flights}"
+          AutoGenerateColumns="False"
+          HeadersVisibility="Column"
+          IsReadOnly="True"
+          SelectionMode="Single"
+          SelectionUnit="FullRow"
+          Background="White"
+          BorderBrush="#DDDDDD"
+          BorderThickness="1"
+          RowBackground="White"
+          AlternatingRowBackground="#F5F5F5"
+          GridLinesVisibility="None"
+          FontSize="14"
+          ColumnWidth="*">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#39444d"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <!-- Стиль строк -->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Height" Value="40"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#E3F2FD"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#BBDEFB"/>
+                            <Setter Property="BorderBrush" Value="#2196F3"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" Binding="{Binding flight_number}"/>
+                <DataGridTextColumn Header="Куда" Binding="{Binding destination}"/>
+                <DataGridTextColumn Header="Вылет" Binding="{Binding departure_time, StringFormat=HH:mm}"/>
+                <DataGridTextColumn Header="Вылет" Binding="{Binding arrival_time, StringFormat=HH:mm}"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>
