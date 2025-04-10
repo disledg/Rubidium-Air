@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,9 +13,22 @@ namespace Rubidium
     public class FlightsViewModel : INotifyPropertyChanged
     {
         private readonly FlightRepo _flightRepo;
-        private List<Flight> _flights;
+        private readonly FlightService _flightService;
+        private ObservableCollection<Flight> _flights;
+        private Flight _selectedFlight;
+        public Flight SelectedFlight
+        {
+            get => _selectedFlight;
+            set
+            {
+                _selectedFlight = value;
+                OnPropertyChanged();
+                // Можно обновить состояние команды удаления
+                ((RelayCommand)DelFlightCommand).RaiseCanExecuteChanged();
+            }
+        }
 
-        public List<Flight> Flights
+        public ObservableCollection<Flight> Flights
         {
             get => _flights;
             set
@@ -24,11 +38,24 @@ namespace Rubidium
             }
         }
         public ICommand AddFlightCommand { get; }
-        public FlightsViewModel(FlightRepo flightRepo)
+        public ICommand DelFlightCommand { get; }
+        public ICommand UpdFlightCommand { get; }
+
+        public FlightsViewModel(FlightRepo flightRepo, FlightService flightService)
         {
             _flightRepo = flightRepo;
+            _flightService = flightService;
+            Flights = new ObservableCollection<Flight>();
+
             LoadFlights();
+
             AddFlightCommand = new RelayCommand(AddFlight);
+            DelFlightCommand = new RelayCommand(
+                execute: DeleteSelectedFlight,
+                canExecute: () => SelectedFlight != null
+            ); 
+
+            UpdFlightCommand = new RelayCommand(UpdFlights);
         }
         private void AddFlight()
         {
@@ -41,15 +68,33 @@ namespace Rubidium
                 status = "Новый"
             });
         }
+        private void DelFlight()
+        {
+            //Flights.Remove(
+        }
+        private void UpdFlights()
+        {
+
+        }
         private void LoadFlights()
         {
-            Flights = _flightRepo.GetAll();
+            var flightsList = _flightRepo.GetAll(); // Получаем List<Flight>
+            Flights = new ObservableCollection<Flight>(flightsList);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        private void DeleteSelectedFlight()
+        {
+            if (SelectedFlight != null)
+            {
+                _flightService.DeleteFlight(SelectedFlight.flight_id); // Предполагая, что у вас есть такой метод
+                Flights.Remove(SelectedFlight);
+                SelectedFlight = null; // Сбрасываем выделение
+            }
         }
     }
 }

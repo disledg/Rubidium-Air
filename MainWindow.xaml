@@ -4,10 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rubidium"
-        xmlns:uc="clr-namespace:Rubidium.UI.UC"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1000"
+        Title="Rubidium AIR" Height="650" Width="1000"
         Background="#e5e5df">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:FlightsViewModel}">
+            <local:FlightsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:EmployeesViewModel}">
+            <local:EmployeesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:BaggageViewModel}">
+            <local:BaggageView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -20,11 +31,26 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="#39444d" RadiusX="15" RadiusY="15"/>
-        <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employeers" Command="{Binding AddFlightCommand}" Height="40" Margin="0,100,0,0" VerticalAlignment="Top"/>
-        <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Flights" Command="{Binding NavigateCommand}" Height="40" Margin="0,145,0,0" VerticalAlignment="Top"/>
-        <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Baggages" Command="{Binding AddFlightCommand}" Height="40" Margin="0,195,0,0" VerticalAlignment="Top"/>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="OwnsJournal" Grid.Column="3" Grid.Row="1"/>
-        <Label Content="Rubidium AIR" FontSize="26" FontFamily="Wattauchimma" Grid.Row="1" Grid.Column="1" Foreground="#e5e5df" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employees" 
+                              Command="{Binding NavigateToEmployeesCommand}" 
+                              Height="40" Margin="0,100,0,0" VerticalAlignment="Top"/>
+
+        <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Flights" 
+                              Command="{Binding NavigateToFlightsCommand}" 
+                              Height="40" Margin="0,145,0,0" VerticalAlignment="Top"/>
+
+        <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Baggages" 
+                              Command="{Binding NavigateToBaggageCommand}" 
+                              Height="40" Margin="0,195,0,0" VerticalAlignment="Top"/>
+
+        <!-- Заменяем Frame на ContentControl -->
+        <ContentControl Grid.Column="3" Grid.Row="1" Content="{Binding CurrentPage}"/>
+
+        <Label Content="Rubidium AIR" FontSize="26" FontFamily="Wattauchimma" 
+               Grid.Row="1" Grid.Column="1" Foreground="#e5e5df" 
+               HorizontalAlignment="Center" VerticalAlignment="Top"/>
     </Grid>
 </Window>

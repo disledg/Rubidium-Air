@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Rubidium.UI.Pages
+namespace Rubidium
 {
     /// <summary>
-    /// Interaction logic for BaggageDataGrid.xaml
+    /// Interaction logic for EmployeeView.xaml
     /// </summary>
-    public partial class BaggageDataGrid : Page
+    public partial class EmployeesView : UserControl
     {
-        public BaggageDataGrid()
+        public EmployeesView()
         {
             InitializeComponent();
         }

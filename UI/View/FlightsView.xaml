@@ -1,16 +1,15 @@
-﻿<UserControl x:Class="Rubidium.UI.UC.FlightsView"
+﻿<UserControl x:Class="Rubidium.FlightsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Rubidium.UI.UC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE">
-            <Button Content="Добавить" Command="{Binding AddCommand}" Margin="5" Width="80"/>
-            <Button Content="Удалить" Command="{Binding DeleteCommand}" Margin="5" Width="80"/>
-            <Button Content="Обновить" Command="{Binding RefreshCommand}" Margin="5" Width="80"/>
+            <Button Content="Добавить" Command="{Binding AddFlightCommand}" Margin="5" Width="80"/>
+            <Button Content="Удалить" Command="{Binding DelFlightCommand}" Margin="5" Width="80"/>
+            <Button Content="Обновить" Command="{Binding UpdFlightCommand}" Margin="5" Width="80"/>
             <Separator Width="20"/>
             <TextBlock Text="Рейсы" VerticalAlignment="Center" FontWeight="Bold"/>
         </StackPanel>
@@ -86,8 +85,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Border CornerRadius="4" 
-                           Padding="6,2"
-                           Background="{Binding status}">
+                           Padding="6,2">
                                 <TextBlock Text="{Binding status}" 
                                   HorizontalAlignment="Center"
                                   Foreground="White"

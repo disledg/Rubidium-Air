@@ -17,6 +17,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -137,19 +152,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ORM\ViewModels\NavigationService.cs" />
+    <Compile Include="ORM\ViewModels\BaggageViewModel.cs" />
+    <Compile Include="ORM\ViewModels\EmployeesViewModel.cs" />
+    <Compile Include="ORM\ViewModels\MainViewModel.cs" />
+    <Compile Include="ORM\services\NavigationService.cs" />
     <Compile Include="ORM\ViewModels\FlightsViewModel.cs" />
-    <Compile Include="ORM\ViewModels\RelayCommand.cs" />
-    <Compile Include="UI\Pages\BaggageDataGrid.xaml.cs">
-      <DependentUpon>BaggageDataGrid.xaml</DependentUpon>
+    <Compile Include="ORM\RelayCommand.cs" />
+    <Compile Include="UI\View\BaggageView.xaml.cs">
+      <DependentUpon>BaggageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\EmployeeDataGrid.xaml.cs">
-      <DependentUpon>EmployeeDataGrid.xaml</DependentUpon>
+    <Compile Include="UI\View\EmployeesView.xaml.cs">
+      <DependentUpon>EmployeesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\FlightsDataGrid.xaml.cs">
-      <DependentUpon>FlightsDataGrid.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\UC\FlightsView.xaml.cs">
+    <Compile Include="UI\View\FlightsView.xaml.cs">
       <DependentUpon>FlightsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\UC\sideCategoryButton.xaml.cs">
@@ -191,19 +206,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UI\Pages\BaggageDataGrid.xaml">
+    <Page Include="UI\View\BaggageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Pages\EmployeeDataGrid.xaml">
+    <Page Include="UI\View\EmployeesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Pages\FlightsDataGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\UC\FlightsView.xaml">
+    <Page Include="UI\View\FlightsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -252,9 +263,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -270,6 +279,18 @@
       <LastGenOutput>AirportM.cs</LastGenOutput>
     </Content>
     <Content Include="Database\script.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

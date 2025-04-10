@@ -13,10 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Rubidium.UI.Pages;
 using Rubidium; 
 
-namespace Rubidium.UI.UC
+namespace Rubidium
 {
     /// <summary>
     /// Interaction logic for FlightsView.xaml
@@ -26,10 +25,6 @@ namespace Rubidium.UI.UC
         public FlightsView()
         {
             InitializeComponent();
-        }
-        private void AddFlight()
-        {
-            
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Rubidium.UI.UC
+namespace Rubidium
 {
     public partial class sideCategoryButton : UserControl
     {
