@@ -55,6 +55,7 @@
     </UserControl.Resources>
 
     <Button Style="{StaticResource sideCategoryButtonStyle}"
-            Content="{Binding Content, ElementName=root1, FallbackValue='Button'}"
-            Command="{Binding Command, ElementName=root1}"/>
+        Content="{Binding Content, RelativeSource={RelativeSource AncestorType=UserControl}}"
+        Command="{Binding Command, RelativeSource={RelativeSource AncestorType=UserControl}}"
+        CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 </UserControl>

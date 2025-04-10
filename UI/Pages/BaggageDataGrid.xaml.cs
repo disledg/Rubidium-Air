@@ -10,26 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Rubidium.UI.Pages;
-using Rubidium; 
 
-namespace Rubidium.UI.UC
+namespace Rubidium.UI.Pages
 {
     /// <summary>
-    /// Interaction logic for FlightsView.xaml
+    /// Interaction logic for BaggageDataGrid.xaml
     /// </summary>
-    public partial class FlightsView : UserControl
+    public partial class BaggageDataGrid : Page
     {
-        public FlightsView()
+        public BaggageDataGrid()
         {
             InitializeComponent();
-        }
-        private void AddFlight()
-        {
-            
         }
     }
 }

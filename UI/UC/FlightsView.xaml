@@ -6,57 +6,97 @@
              xmlns:local="clr-namespace:Rubidium.UI.UC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Button Content="Добавить рейс" 
-            Command="{Binding AddFlightCommand}" 
-            Margin="10" Width="120"/>
-
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE">
+            <Button Content="Добавить" Command="{Binding AddCommand}" Margin="5" Width="80"/>
+            <Button Content="Удалить" Command="{Binding DeleteCommand}" Margin="5" Width="80"/>
+            <Button Content="Обновить" Command="{Binding RefreshCommand}" Margin="5" Width="80"/>
+            <Separator Width="20"/>
+            <TextBlock Text="Рейсы" VerticalAlignment="Center" FontWeight="Bold"/>
+        </StackPanel>
         <DataGrid ItemsSource="{Binding Flights}"
           AutoGenerateColumns="False"
           HeadersVisibility="Column"
-          IsReadOnly="True"
-          SelectionMode="Single"
-          SelectionUnit="FullRow"
           Background="White"
-          BorderBrush="#DDDDDD"
+          BorderBrush="#E0E0E0"
           BorderThickness="1"
           RowBackground="White"
-          AlternatingRowBackground="#F5F5F5"
+          AlternatingRowBackground="#FAFAFA"
           GridLinesVisibility="None"
           FontSize="14"
-          ColumnWidth="*">
+          ColumnWidth="*"
+          CanUserResizeRows="False"
+          CanUserAddRows="False"
+          VerticalGridLinesBrush="Transparent"
+          HorizontalGridLinesBrush="Transparent">
+
+            <!-- Эффекты -->
+            <DataGrid.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="3" Color="#33000000"/>
+            </DataGrid.Effect>
+
+            <!-- Стиль заголовков -->
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="#39444d"/>
                     <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="12,8"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                    <Setter Property="BorderBrush" Value="#263238"/>
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
             <!-- Стиль строк -->
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
-                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="Height" Value="42"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Setter Property="BorderBrush" Value="#EEEEEE"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#E3F2FD"/>
+                            <Setter Property="Background" Value="#F5F5F5"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#BBDEFB"/>
-                            <Setter Property="BorderBrush" Value="#2196F3"/>
+                            <Setter Property="Background" Value="#E3F2FD"/>
+                            <Setter Property="BorderBrush" Value="#BBDEFB"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>
+
+            <!-- Колонки -->
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding flight_number}"/>
-                <DataGridTextColumn Header="Куда" Binding="{Binding destination}"/>
-                <DataGridTextColumn Header="Вылет" Binding="{Binding departure_time, StringFormat=HH:mm}"/>
-                <DataGridTextColumn Header="Вылет" Binding="{Binding arrival_time, StringFormat=HH:mm}"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding status}"/>
+                <DataGridTextColumn Header="Номер рейса" 
+                          Binding="{Binding flight_number}" 
+                          Width="1.5*"/>
+
+                <DataGridTextColumn Header="Направление" 
+                          Binding="{Binding destination}" 
+                          Width="2*"/>
+
+                <DataGridTextColumn Header="Вылет" 
+                          Binding="{Binding departure_time, StringFormat=HH:mm dd.MM}" 
+                          Width="1.2*"/>
+                <DataGridTextColumn Header="Вылет" 
+                           Binding="{Binding arrival_time, StringFormat=HH:mm dd.MM}" 
+                           Width="1.2*"/>
+                <DataGridTemplateColumn Header="Статус" Width="1*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="4" 
+                           Padding="6,2"
+                           Background="{Binding status}">
+                                <TextBlock Text="{Binding status}" 
+                                  HorizontalAlignment="Center"
+                                  Foreground="White"
+                                  FontWeight="SemiBold"/>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Rubidium.UI.UC;
+using Rubidium.UI.Pages;
 
 namespace Rubidium
 {
@@ -22,19 +23,31 @@ namespace Rubidium
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        //private readonly Dictionary<string, Page> _pages = new();
         public MainWindow()
         {
             InitializeComponent();
             var dbContext = new AirportDataBaseContext();
-
-
+            App.Navigator.Initialize(MainFrame);
             this.DataContext = new FlightsViewModel(new FlightRepo(dbContext));
+            //_pages.Add("Flights", new FlightsDataGrid());
+            //_pages.Add("Baggages", new BaggageDataGrid());
+            //_pages.Add("Employees", new EmployeeDataGrid());
+
+            // Устанавливаем начальную страницу
+            //MainFrame.Content = _pages["Flights"];
+
+            // Начальная навигация
+            App.Navigator.NavigateTo(new FlightsDataGrid());
         }
 
-        public void MyCommand()
+        public void NavigateTo(string pageKey)
         {
-            
+            //if (_pages.TryGetValue(pageKey, out var page))
+            //{
+            //    MainFrame.Content = page;
+            //}
         }
+
     }
 }

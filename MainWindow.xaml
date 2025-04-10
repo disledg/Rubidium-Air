@@ -22,9 +22,9 @@
         </Grid.RowDefinitions>
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="#39444d" RadiusX="15" RadiusY="15"/>
         <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employeers" Command="{Binding AddFlightCommand}" Height="40" Margin="0,100,0,0" VerticalAlignment="Top"/>
-        <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Flights" Command="{Binding AddFlightCommand}" Height="40" Margin="0,145,0,0" VerticalAlignment="Top"/>
+        <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Flights" Command="{Binding NavigateCommand}" Height="40" Margin="0,145,0,0" VerticalAlignment="Top"/>
         <uc:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Baggages" Command="{Binding AddFlightCommand}" Height="40" Margin="0,195,0,0" VerticalAlignment="Top"/>
-        <uc:FlightsView Grid.Column="3" Grid.Row="1" />
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" JournalOwnership="OwnsJournal" Grid.Column="3" Grid.Row="1"/>
         <Label Content="Rubidium AIR" FontSize="26" FontFamily="Wattauchimma" Grid.Row="1" Grid.Column="1" Foreground="#e5e5df" HorizontalAlignment="Center" VerticalAlignment="Top"/>
     </Grid>
 </Window>

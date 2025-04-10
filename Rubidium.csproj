@@ -137,8 +137,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ORM\ViewModels\NavigationService.cs" />
     <Compile Include="ORM\ViewModels\FlightsViewModel.cs" />
     <Compile Include="ORM\ViewModels\RelayCommand.cs" />
+    <Compile Include="UI\Pages\BaggageDataGrid.xaml.cs">
+      <DependentUpon>BaggageDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\EmployeeDataGrid.xaml.cs">
+      <DependentUpon>EmployeeDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\FlightsDataGrid.xaml.cs">
+      <DependentUpon>FlightsDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\UC\FlightsView.xaml.cs">
       <DependentUpon>FlightsView.xaml</DependentUpon>
     </Compile>
@@ -181,6 +191,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\Pages\BaggageDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\EmployeeDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\FlightsDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\UC\FlightsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -247,6 +269,7 @@
       <DependentUpon>AirportM.edmx</DependentUpon>
       <LastGenOutput>AirportM.cs</LastGenOutput>
     </Content>
+    <Content Include="Database\script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
