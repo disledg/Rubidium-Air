@@ -21,7 +21,7 @@
                                 <Rectangle x:Name="leftline"
                                            Width="3"
                                            Height="20"
-                                           Fill="#e5e5df"
+                                           Fill="#f9b17a"
                                            HorizontalAlignment="Left"
                                            VerticalAlignment="Center"
                                            Margin="5,0,0,0"
@@ -37,7 +37,7 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="hoverOverlay" Property="Opacity" Value="1"/>
                                 <Setter TargetName="leftline" Property="Opacity" Value="1"/>
-                                <Setter Property="Foreground" Value="#e5e5df"/>
+                                <Setter Property="Foreground" Value="#f9b17a"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

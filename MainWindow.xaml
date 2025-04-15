@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Rubidium"
         mc:Ignorable="d"
         Title="Rubidium AIR" Height="650" Width="1000"
-        Background="#e5e5df">
+        Background="#676f9d" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:FlightsViewModel}">
             <local:FlightsView/>
@@ -21,36 +21,55 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="12.6"/>
+            <ColumnDefinition Width="167.4"/>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="180"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Column="1" Grid.Row="1" Fill="#39444d" RadiusX="15" RadiusY="15"/>
+        <Rectangle Fill="#424769" RadiusX="0" RadiusY="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="-16,0,0,0"/>
 
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employees" 
                               Command="{Binding NavigateToEmployeesCommand}" 
-                              Height="40" Margin="0,100,0,0" VerticalAlignment="Top"/>
+                              Height="40" Margin="0,100,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Flights" 
                               Command="{Binding NavigateToFlightsCommand}" 
-                              Height="40" Margin="0,145,0,0" VerticalAlignment="Top"/>
+                              Height="40" Margin="0,145,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Baggages" 
                               Command="{Binding NavigateToBaggageCommand}" 
-                              Height="40" Margin="0,195,0,0" VerticalAlignment="Top"/>
+                              Height="40" Margin="0,195,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Rectangle Fill="#2d3250" RadiusX="0" RadiusY="0" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="0,0,0,590" Grid.Column="1"/>
 
         <!-- Заменяем Frame на ContentControl -->
-        <ContentControl Grid.Column="3" Grid.Row="1" Content="{Binding CurrentPage}"/>
+        <ContentControl Grid.Column="3" Grid.Row="1" Content="{Binding CurrentPage}" Grid.ColumnSpan="3" Margin="10,20,10,0" Grid.RowSpan="2"/>
 
-        <Label Content="Rubidium AIR" FontSize="26" FontFamily="Wattauchimma" 
-               Grid.Row="1" Grid.Column="1" Foreground="#e5e5df" 
-               HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Rubidium AIR" FontSize="26" FontFamily="Wattauchimma" Grid.Column="2" Foreground="#e5e5df" 
+               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,2,0,0" Grid.RowSpan="2"/>
+        <Button Height="25" Width="25" Margin="765,8,10,598" Grid.Column="5" Grid.RowSpan="2" Click="Button_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Bd" Background="Transparent">
+                        <Path x:Name="Pt" Data="M0,0 M0.2,0.2 L 0.8,0.8 M0.2,0.8 L0.8,0.2 M1,1"
+              Stretch="Uniform" Stroke="#e5e5df" StrokeThickness="2"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="#f9b17a"/>
+                            <Setter TargetName="Pt" Property="Stroke" Value="#2d3250"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
     </Grid>
 </Window>

@@ -21,10 +21,19 @@ namespace Rubidium
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool isKeyPressed = false;
         public MainWindow()
         {
             InitializeComponent();
+            this.PreviewKeyDown += (s1, e1) => { if (e1.Key == Key.LeftCtrl) isKeyPressed = true; };
+            this.PreviewKeyUp += (s2, e2) => { if (e2.Key == Key.LeftCtrl) isKeyPressed = false; };
+            this.PreviewMouseLeftButtonDown += (s, e) => { if (isKeyPressed) DragMove(); };
+
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
