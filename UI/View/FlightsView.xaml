@@ -7,11 +7,74 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE">
-            <Button Content="Добавить" Command="{Binding AddFlightCommand}" Margin="5" Width="80"/>
-            <Button Content="Удалить" Command="{Binding DelFlightCommand}" Margin="5" Width="80"/>
-            <Button Content="Обновить" Command="{Binding UpdFlightCommand}" Margin="5" Width="80"/>
-            <Separator Width="20"/>
-            <TextBlock Text="Рейсы" VerticalAlignment="Center" FontWeight="Bold"/>
+            <Button Content="Добавить" Command="{Binding AddFlightCommand}" Margin="5" Width="80" Background="#FF2D3250" Foreground="#FFE5E5DF">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder" CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}" >
+                        <ContentControl Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="Удалить" Command="{Binding DelFlightCommand}" Margin="5" Width="80" Background="#FF2D3250" Foreground="#FFE5E5DF">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder" CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}" >
+                        <ContentControl Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="Обновить" Command="{Binding UpdFlightCommand}" Margin="5" Width="80" Background="#FF2D3250" Foreground="#FFE5E5DF">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder" CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}" >
+                        <ContentControl Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Separator Width="20" RenderTransformOrigin="1.918,0.58"/>
+            <TextBlock Text="Система контроля рейсов" FontWeight="Bold" FontSize="16" Height="25" Width="218" VerticalAlignment="Center"/>
         </StackPanel>
         <DataGrid ItemsSource="{Binding Flights}"
           AutoGenerateColumns="False"
@@ -29,6 +92,7 @@
           VerticalGridLinesBrush="Transparent"
           HorizontalGridLinesBrush="Transparent">
 
+
             <!-- Эффекты -->
             <DataGrid.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="3" Color="#33000000"/>
@@ -37,7 +101,7 @@
             <!-- Стиль заголовков -->
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="#39444d"/>
+                    <Setter Property="Background" Value="#FF2D3250"/>
                     <Setter Property="Foreground" Value="White"/>
                     <Setter Property="FontWeight" Value="SemiBold"/>
                     <Setter Property="Padding" Value="12,8"/>
