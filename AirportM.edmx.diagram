@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="607f82dab80b4825b0c50f3881631762" Name="Diagram1">
-        <EntityTypeShape EntityType="AirportDBModel.Baggage" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AirportDBModel.Baggage" Width="2.125" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="AirportDBModel.Employee" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AirportDBModel.Flight" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="AirportDBModel.FK_Baggage_Flights1" ManuallyRouted="false" />
