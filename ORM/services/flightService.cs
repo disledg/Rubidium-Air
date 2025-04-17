@@ -74,5 +74,5 @@ public class FlightService
     // Дополнительный метод для эпика
     public List<Flight> GetFlightsByStatus(string status)
         => _flightRepo.GetByStatus(status);
-    public List<Flight> GetAllFlights() => _flightRepo.GetAll();
+    public IQueryable<Flight> GetAllFlights() => _flightRepo.GetAll();
 }

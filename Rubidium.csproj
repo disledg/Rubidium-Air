@@ -148,73 +148,141 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="UI\MainWindows\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ORM\ViewModels\BaggageViewModel.cs" />
-    <Compile Include="ORM\ViewModels\EmployeesViewModel.cs" />
-    <Compile Include="ORM\ViewModels\MainViewModel.cs" />
+    <Compile Include="AirportDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AirportDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirportDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AirportDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirportDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AirportDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Baggage.cs">
+      <DependentUpon>AirportDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>AirportDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Flight.cs">
+      <DependentUpon>AirportDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainWindows\login.xaml.cs">
+      <DependentUpon>login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Interfaces\IBaggageRepo.cs" />
+    <Compile Include="ORM\Interfaces\IEmployeeRepo.cs" />
+    <Compile Include="ORM\Interfaces\IFlightRepo.cs" />
+    <Compile Include="ORM\Interfaces\IPasswordHasher.cs" />
+    <Compile Include="ORM\Interfaces\IRepository.cs" />
+    <Compile Include="ORM\Interfaces\IUserRepo.cs" />
+    <Compile Include="ORM\repos\UserRepo.cs" />
+    <Compile Include="ORM\services\AuthService.cs" />
+    <Compile Include="ORM\services\PasswordHasher.cs" />
+    <Compile Include="ORM\ViewModels\Auth\AuthViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Baggage\AddBaggageViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Baggage\BaggageViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Baggage\EditBaggageViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Employees\AddEmployeeViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Employees\EditEmployeeViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Employees\EmployeesViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Flights\AddFlightsViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Flights\EditFlightsViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Main\MainViewModel.cs" />
     <Compile Include="ORM\services\NavigationService.cs" />
-    <Compile Include="ORM\ViewModels\FlightsViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Flights\FlightsViewModel.cs" />
     <Compile Include="ORM\RelayCommand.cs" />
-    <Compile Include="UI\View\BaggageView.xaml.cs">
+    <Compile Include="UI\View\Baggage\AddBaggageView.xaml.cs">
+      <DependentUpon>AddBaggageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\Baggage\BaggageView.xaml.cs">
       <DependentUpon>BaggageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\View\EmployeesView.xaml.cs">
+    <Compile Include="UI\View\Baggage\EditBaggageView.xaml.cs">
+      <DependentUpon>EditBaggageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\Employee\AddEmployeesView.xaml.cs">
+      <DependentUpon>AddEmployeesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\Employee\EditEmployeeView.xaml.cs">
+      <DependentUpon>EditEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\Flights\AddFlightsView.xaml.cs">
+      <DependentUpon>AddFlightsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\Employee\EmployeesView.xaml.cs">
       <DependentUpon>EmployeesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\View\FlightsView.xaml.cs">
+    <Compile Include="UI\View\Flights\EditFlightView.xaml.cs">
+      <DependentUpon>EditFlightView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\Flights\FlightsView.xaml.cs">
       <DependentUpon>FlightsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\UC\sideCategoryButton.xaml.cs">
       <DependentUpon>sideCategoryButton.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="User.cs">
+      <DependentUpon>AirportDB.tt</DependentUpon>
+    </Compile>
+    <Page Include="UI\MainWindows\login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\MainWindows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AirportM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AirportM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AirportM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AirportM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AirportM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AirportM.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="UI\MainWindows\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Baggage.cs">
-      <DependentUpon>AirportM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Employee.cs">
-      <DependentUpon>AirportM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Flight.cs">
-      <DependentUpon>AirportM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="UI\MainWindows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UI\View\BaggageView.xaml">
+    <Page Include="UI\View\Baggage\AddBaggageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\View\EmployeesView.xaml">
+    <Page Include="UI\View\Baggage\BaggageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\View\FlightsView.xaml">
+    <Page Include="UI\View\Baggage\EditBaggageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\Employee\AddEmployeesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\Employee\EditEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\Flights\AddFlightsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\Employee\EmployeesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\Flights\EditFlightView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\Flights\FlightsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,13 +315,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="AirportM.edmx">
+    <EntityDeploy Include="AirportDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AirportM.Designer.cs</LastGenOutput>
+      <LastGenOutput>AirportDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AirportM.edmx.diagram">
-      <DependentUpon>AirportM.edmx</DependentUpon>
+    <None Include="AirportDB.edmx.diagram">
+      <DependentUpon>AirportDB.edmx</DependentUpon>
     </None>
+    <None Include="Database\AirportDB.bak" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -268,15 +337,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AirportM.Context.tt">
+    <Content Include="AirportDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AirportM.edmx</DependentUpon>
-      <LastGenOutput>AirportM.Context.cs</LastGenOutput>
+      <DependentUpon>AirportDB.edmx</DependentUpon>
+      <LastGenOutput>AirportDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="AirportM.tt">
+    <Content Include="AirportDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AirportM.edmx</DependentUpon>
-      <LastGenOutput>AirportM.cs</LastGenOutput>
+      <DependentUpon>AirportDB.edmx</DependentUpon>
+      <LastGenOutput>AirportDB.cs</LastGenOutput>
     </Content>
     <Content Include="Database\script.sql" />
   </ItemGroup>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Rubidium;
 namespace Rubidium
 {
@@ -22,7 +23,7 @@ namespace Rubidium
 
             var baggage = new Baggage()
             {
-                baggage_id = baggageId,
+                Id = baggageId,
                 passenger_number = passengerNumber,
                 passenger_sername = passengerSername,
                 passenger_name = passengerName,
@@ -35,13 +36,13 @@ namespace Rubidium
         }
 
         // Удаление багажа
-        public void RemoveBaggage(string baggageId)
+        public void RemoveBaggage(int baggageId)
         {
             _baggageRepo.Delete(baggageId);
         }
 
         // Обновление статуса багажа
-        public void UpdateBaggageStatus(string baggageId, string newStatus)
+        public void UpdateBaggageStatus(int baggageId, string newStatus)
         {
             _baggageRepo.UpdateStatus(baggageId, newStatus);
         }
@@ -53,10 +54,10 @@ namespace Rubidium
         }
 
         // Дополнительные методы
-        public Baggage GetBaggage(string id) => _baggageRepo.GetById(id);
+        public Baggage GetBaggage(int id) => _baggageRepo.GetById(id);
 
         public List<Baggage> GetBaggageByPassenger(int passengerNumber)
             => _baggageRepo.GetByPassengerNumber(passengerNumber);
-        public List<Baggage> GetAllBaggage() => _baggageRepo.GetAll();
+        public IQueryable<Baggage> GetAllBaggage() => _baggageRepo.GetAll();
     }
 }

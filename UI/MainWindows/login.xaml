@@ -1,0 +1,73 @@
+﻿<Window x:Class="Rubidium.login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rubidium"
+        mc:Ignorable="d"
+        Title="Вход" Background="#676f9d" Height="250" Width="354">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        
+        <!-- Заголовок -->
+        <TextBlock Text="Вход в приложение управления аэропортом RubidiumAir" 
+                   Grid.Row="0"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   FontSize="16"
+                   Margin="0,0,0,10" />
+
+        <!-- Поле логина -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,5">
+            <TextBlock Text="Логин" FontSize="14" Foreground="#FFE5E5DF"/>
+            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" FontSize="16" Height="22" >
+                
+            </TextBox>
+        </StackPanel>
+
+        <!-- Поле пароля -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,10">
+            <TextBlock Text="Пароль" FontSize="14" Foreground="#FFE5E5DF"/>
+            <PasswordBox x:Name="PasswordBox" Foreground="#FFE5E5DF" Background="#424769" PasswordChanged="PasswordBox_PasswordChanged" FontSize="16" Height="22" BorderBrush="#00ABADB3">
+
+            </PasswordBox>
+        </StackPanel>
+
+        <!-- Кнопка входа -->
+        <Button Grid.Row="3" 
+                Content="Войти" 
+                Width="140"
+                HorizontalAlignment="Center"
+                Background="#FF2D3250" 
+                Foreground="#FFE5E5DF"
+                CommandParameter="{Binding ElementName=PasswordBox}"
+                Command="{Binding AuntificationCommand}" Margin="0,0,0,-40">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="buttonBorder" CornerRadius="20"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            Background="{TemplateBinding Background}"
+            Height="{TemplateBinding Height}"
+            Width="{TemplateBinding Width}" >
+                        <ContentControl Margin="{TemplateBinding Padding}"
+            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+            Content="{TemplateBinding Content}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</Window>
