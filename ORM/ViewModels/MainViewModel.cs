@@ -13,28 +13,30 @@ namespace Rubidium
     public class MainViewModel : INotifyPropertyChanged
     {
         private readonly NavigationService _navigation;
-        private readonly FlightRepo _flightRepo;
-        private readonly FlightService _flighService;
+        private readonly FlightService _flightService;
+        private readonly BaggageService _baggageService;
+        private readonly EmployeeService _employeeService;
 
         // Команды навигации
         public ICommand NavigateToFlightsCommand { get; }
         public ICommand NavigateToEmployeesCommand { get; }
         public ICommand NavigateToBaggageCommand { get; }
 
-        public MainViewModel(NavigationService navigation, FlightRepo flightRepo, FlightService flightService)
+        public MainViewModel(NavigationService navigation, FlightService flightService, EmployeeService employeeService, BaggageService baggageService)
         {
             _navigation = navigation;
-            _flightRepo = flightRepo;
-            _flighService = flightService;
+            _flightService = flightService;
+            _employeeService = employeeService;
+            _baggageService = baggageService;
             // Регистрация страниц
-            _navigation.RegisterPage("Flights", () => new FlightsViewModel(_flightRepo, flightService));
+            _navigation.RegisterPage("Flights", () => new FlightsViewModel(flightService));
             _navigation.RegisterPage("Employees", () => new EmployeesViewModel());
             _navigation.RegisterPage("Baggage", () => new BaggageViewModel());
 
             // Инициализация команд
-            NavigateToFlightsCommand = new RelayCommand(() => NavigateTo("Flights"));
-            NavigateToEmployeesCommand = new RelayCommand(() => NavigateTo("Employees"));
-            NavigateToBaggageCommand = new RelayCommand(() => NavigateTo("Baggage"));
+            NavigateToFlightsCommand = new RelayCommand(_ => NavigateTo("Flights"));
+            NavigateToEmployeesCommand = new RelayCommand(_ => NavigateTo("Employees"));
+            NavigateToBaggageCommand = new RelayCommand(_ => NavigateTo("Baggage"));
 
             // Загрузка начальной страницы
             NavigateTo("Flights");

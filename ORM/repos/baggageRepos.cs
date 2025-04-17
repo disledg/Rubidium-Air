@@ -5,90 +5,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-public class BaggageRepo
+namespace Rubidium
 {
-    private readonly AirportDataBaseContext _db;
-    private static readonly string[] ValidStatuses = { "Проверен", "Загружен", "Транспортирован", "Доставлен" };
-
-    public BaggageRepo(AirportDataBaseContext db)
+    public class BaggageRepo : Repository<Baggage>, IBaggageRepo
     {
-        _db = db;
-    }
+        private static readonly string[] ValidStatuses = { "Проверен", "Загружен", "Транспортирован", "Доставлен" };
 
-    private void ValidateEntity<T>(T entity) where T : class
-    {
-        if (entity == null) throw new ArgumentNullException(nameof(entity));
-    }
+        public BaggageRepo(AirportDBEntities1 db) : base(db)
+        {
+        }
 
-    public void Add(Baggage baggage)
-    {
-        ValidateEntity(baggage);
+        public override void Add(Baggage baggage)
+        {
+            if (baggage == null) throw new ArgumentNullException(nameof(baggage));
 
-        if (_db.Flights.Find(baggage.flight_id) == null)
-            throw new KeyNotFoundException("Рейс не существует");
+            var db = _context as AirportDBEntities1;
+            if (db.Flights.Find(baggage.flight_id) == null)
+                throw new KeyNotFoundException("Рейс не существует");
 
-        if (baggage.passenger_number == 0 & string.IsNullOrEmpty(baggage.passenger_name) & string.IsNullOrEmpty(baggage.passenger_sername))
-            throw new ArgumentException("ФИО и номер пасспорта пассажира обязательно");
+            if (baggage.passenger_number == 0 & string.IsNullOrEmpty(baggage.passenger_name) & string.IsNullOrEmpty(baggage.passenger_sername))
+                throw new ArgumentException("ФИО и номер пасспорта пассажира обязательно");
 
-        _db.Baggages.Add(baggage);
-        _db.SaveChanges();
-    }
+            base.Add(baggage);
+        }
 
-    public void Delete(string id)
-    {
-        var baggage = _db.Baggages.Find(id);
-        if (baggage == null) return;
+        public override void Update(Baggage updatedBaggage)
+        {
+            if (updatedBaggage == null) throw new ArgumentNullException(nameof(updatedBaggage));
 
-        _db.Baggages.Remove(baggage);
-        _db.SaveChanges();
-    }
+            var baggage = GetById(updatedBaggage.Id);
+            if (baggage == null)
+                throw new KeyNotFoundException("Багаж не найден");
 
-    public void Update(Baggage updatedBaggage)
-    {
-        ValidateEntity(updatedBaggage);
+            baggage.weight = updatedBaggage.weight;
+            baggage.passenger_number = updatedBaggage.passenger_number;
+            baggage.passenger_name = updatedBaggage.passenger_name;
+            baggage.passenger_sername = updatedBaggage.passenger_sername;
+            baggage.flight_id = updatedBaggage.flight_id;
+            baggage.status = updatedBaggage.status;
 
-        var baggage = _db.Baggages.Find(updatedBaggage.baggage_id);
-        if (baggage == null)
-            throw new KeyNotFoundException("Багаж не найден");
+            base.Update(baggage);
+        }
 
-        baggage.weight = updatedBaggage.weight;
-        baggage.passenger_number = updatedBaggage.passenger_number;
-        baggage.passenger_name = updatedBaggage.passenger_name;
-        baggage.passenger_sername = updatedBaggage.passenger_sername;
-        baggage.flight_id = updatedBaggage.flight_id;
-        baggage.status = updatedBaggage.status;
+        public void UpdateStatus(int id, string newStatus)
+        {
+            if (!ValidStatuses.Contains(newStatus))
+                throw new ArgumentException("Недопустимый статус багажа");
 
-        _db.SaveChanges();
-    }
+            var baggage = GetById(id);
+            if (baggage == null)
+                throw new KeyNotFoundException("Багаж не найден");
 
-    public void UpdateStatus(string id, string newStatus)
-    {
-        if (!ValidStatuses.Contains(newStatus))
-            throw new ArgumentException("Недопустимый статус багажа");
+            baggage.status = newStatus;
+            Save();
+        }
 
-        var baggage = _db.Baggages.Find(id);
-        if (baggage == null)
-            throw new KeyNotFoundException("Багаж не найден");
+        public List<Baggage> GetByFlightId(int flightId)
+        {
+            return _dbSet.Where(b => b.flight_id == flightId).ToList();
+        }
 
-        baggage.status = newStatus;
-        _db.SaveChanges();
-    }
-
-    public Baggage GetById(string id)
-    {
-        return _db.Baggages.Find(id);
-    }
-
-    public List<Baggage> GetByFlightId(int flightId)
-    {
-        return _db.Baggages.Where(b => b.flight_id == flightId).ToList();
-    }
-    public List<Baggage> GetByPassengerNumber(int passengerNumber)
-    {
-        return _db.Baggages.Where(b => b.passenger_number == passengerNumber).ToList();
-    }
-    public List<Baggage> GetAll()
-    {
-        return _db.Baggages.ToList();
+        public List<Baggage> GetByPassengerNumber(int passengerNumber)
+        {
+            return _dbSet.Where(b => b.passenger_number == passengerNumber).ToList();
+        }
     }
 }

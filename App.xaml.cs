@@ -19,25 +19,26 @@ namespace Rubidium
             base.OnStartup(e);
 
             // Создаем и сохраняем NavigationService как статическое свойство
-            var dbContext = new AirportDataBaseContext();
+            var dbContext = new AirportDBEntities1();
             Navigator = new NavigationService();
-            var flightRepo = new FlightRepo(dbContext);
-            var baggageRepo = new BaggageRepo(dbContext);
-            var flightService = new FlightService(flightRepo,baggageRepo);
 
+            var flightService = new FlightService(new FlightRepo(dbContext), new BaggageRepo(dbContext));
+            var employeeService = new EmployeeService(new EmployeeRepo(dbContext), new FlightRepo(dbContext));
+            var baggageService = new BaggageService(new BaggageRepo(dbContext),new FlightRepo(dbContext));
+            var authService = new AuthService(new UserRepository(dbContext, new PasswordHasher()),new  PasswordHasher());
             // Регистрируем страницы
-            Navigator.RegisterPage("Flights", () => new FlightsViewModel(flightRepo, flightService));
+            Navigator.RegisterPage("Flights", () => new FlightsViewModel(flightService));
             Navigator.RegisterPage("Employees", () => new EmployeesViewModel());
             Navigator.RegisterPage("Baggage", () => new BaggageViewModel());
 
-            var mainVM = new MainViewModel(Navigator, flightRepo, flightService);
+            var AuthVM = new AuthViewModel(authService, employeeService, flightService, baggageService, Navigator);
 
-            var mainWindow = new MainWindow
+            var login = new login
             {
-                DataContext = mainVM
+                DataContext = AuthVM
             };
 
-            mainWindow.Show();
+            login.Show();
         }
     }
 }

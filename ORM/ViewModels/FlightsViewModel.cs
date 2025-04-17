@@ -12,7 +12,6 @@ namespace Rubidium
 {
     public class FlightsViewModel : INotifyPropertyChanged
     {
-        private readonly FlightRepo _flightRepo;
         private readonly FlightService _flightService;
         private ObservableCollection<Flight> _flights;
         private Flight _selectedFlight;
@@ -41,21 +40,20 @@ namespace Rubidium
         public ICommand DelFlightCommand { get; }
         public ICommand UpdFlightCommand { get; }
 
-        public FlightsViewModel(FlightRepo flightRepo, FlightService flightService)
+        public FlightsViewModel(FlightService flightService)
         {
-            _flightRepo = flightRepo;
             _flightService = flightService;
             Flights = new ObservableCollection<Flight>();
 
             LoadFlights();
 
-            AddFlightCommand = new RelayCommand(AddFlight);
+            AddFlightCommand = new RelayCommand(_ => AddFlight());
             DelFlightCommand = new RelayCommand(
-                execute: DeleteSelectedFlight,
-                canExecute: () => SelectedFlight != null
+                execute: _ => DeleteSelectedFlight(),
+                canExecute: _ => SelectedFlight != null
             ); 
 
-            UpdFlightCommand = new RelayCommand(UpdFlights);
+            UpdFlightCommand = new RelayCommand(_ => UpdFlights());
         }
         private void AddFlight()
         {
@@ -78,7 +76,7 @@ namespace Rubidium
         }
         private void LoadFlights()
         {
-            var flightsList = _flightRepo.GetAll(); // Получаем List<Flight>
+            var flightsList = _flightService.GetAllFlights(); // Получаем List<Flight>
             Flights = new ObservableCollection<Flight>(flightsList);
         }
 
@@ -91,7 +89,7 @@ namespace Rubidium
         {
             if (SelectedFlight != null)
             {
-                _flightService.DeleteFlight(SelectedFlight.flight_id); // Предполагая, что у вас есть такой метод
+                _flightService.DeleteFlight(SelectedFlight.Id); // Предполагая, что у вас есть такой метод
                 Flights.Remove(SelectedFlight);
                 SelectedFlight = null; // Сбрасываем выделение
             }
