@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="AddEmployees" Height="300" 
         Width="400"
+        Background="#676f9d"
         WindowStartupLocation="CenterOwner">
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -14,25 +15,77 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Фамилия:" Grid.Row="0"/>
-        <TextBox Text="{Binding LastName}" Grid.Row="0" Margin="0,0,0,10" Grid.Column="1"/>
+        <TextBlock Text="Фамилия:" Foreground="#FFE5E5DF" Grid.Row="0"/>
+        <TextBox Text="{Binding LastName}" Grid.Row="1" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
 
-        <TextBlock Text="Имя:" Grid.Row="1"/>
-        <TextBox Text="{Binding FirstName}" Grid.Row="1" Margin="0,0,0,10" Grid.Column="1"/>
+        <TextBlock Text="Имя:" Foreground="#FFE5E5DF" Grid.Row="2"/>
+        <TextBox Text="{Binding FirstName}" Grid.Row="3" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
 
-        <TextBlock Text="Должность:" Grid.Row="2"/>
-        <TextBox Text="{Binding Position}" Grid.Row="2" Margin="0,0,0,10" Grid.Column="1"/>
+        <TextBlock Text="Должность:" Foreground="#FFE5E5DF" Grid.Row="4"/>
+        <TextBox Text="{Binding Position}" Grid.Row="5" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
 
-        <TextBlock Text="Контактные данные:" Grid.Row="3"/>
-        <TextBox Text="{Binding ContactInfo}" Grid.Row="3" Margin="0,0,0,20" Grid.Column="1"/>
+        <TextBlock Text="Контактные данные:" Foreground="#FFE5E5DF" Grid.Row="6"/>
+        <TextBox Text="{Binding ContactInfo}" Grid.Row="7" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,20" Grid.Column="1"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="5">
-            <Button Content="Отмена" Command="{Binding CancelCommand}" Margin="0,0,10,0" Width="80"/>
-            <Button Content="Сохранить" Command="{Binding SaveCommand}" Width="80"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="9">
+            <Button Content="Отмена" Command="{Binding CancelCommand}" 
+                    Margin="0,0,10,0" 
+                    Background="#FF2D3250" 
+                    Foreground="#FFE5E5DF"
+                    Width="80" Height="30">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder" CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}" >
+                                <ContentControl Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="Сохранить" Command="{Binding SaveCommand}" 
+                    Width="80"
+                    Background="#FF2D3250" 
+                    Foreground="#FFE5E5DF">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder" CornerRadius="0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}" >
+                                <ContentControl Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

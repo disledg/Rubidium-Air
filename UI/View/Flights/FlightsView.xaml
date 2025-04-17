@@ -142,7 +142,7 @@
                 <DataGridTextColumn Header="Вылет" 
                           Binding="{Binding departure_time, StringFormat=HH:mm dd.MM}" 
                           Width="1.2*"/>
-                <DataGridTextColumn Header="Вылет" 
+                <DataGridTextColumn Header="Прибытие" 
                            Binding="{Binding arrival_time, StringFormat=HH:mm dd.MM}" 
                            Width="1.2*"/>
                 <DataGridTemplateColumn Header="Статус" Width="1*">

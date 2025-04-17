@@ -54,7 +54,7 @@
 
         <Label Content="Rubidium AIR" FontSize="26" FontFamily="Wattauchimma" Grid.Column="2" Foreground="#e5e5df" 
                HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,2,0,0" Grid.RowSpan="2"/>
-        <Button Height="25" Width="25" Margin="765,8,10,598" Grid.Column="5" Grid.RowSpan="2" Click="Button_Click">
+        <Button Height="25" Width="25" Margin="765,8,10,598" Grid.Column="5" Grid.RowSpan="2" Click="Close_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Bd" Background="Transparent">

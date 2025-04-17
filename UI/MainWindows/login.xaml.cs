@@ -30,5 +30,9 @@ namespace Rubidium
                 vm.Password = ((PasswordBox)sender).Password;
             }
         }
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

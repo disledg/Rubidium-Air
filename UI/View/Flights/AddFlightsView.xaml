@@ -5,8 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rubidium"
         mc:Ignorable="d"
-        Title="AddFlightsView" Height="450" Width="800">
-    <Grid>
-        
+        Title="AddFlightsView" 
+        Background="#676f9d"
+        Height="320" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Номер рейса:" Foreground="#FFE5E5DF" Grid.Row="0"/>
+        <TextBox Text="{Binding FlightNumber}" Grid.Row="1" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
+
+        <TextBlock Text="Направление:" Foreground="#FFE5E5DF" Grid.Row="2"/>
+        <TextBox Text="{Binding Destination}" Grid.Row="3" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
+
+        <TextBlock Text="Вылет:" Foreground="#FFE5E5DF" Grid.Row="4"/>
+        <TextBox Text="{Binding DepartureTime}" Grid.Row="5" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
+
+        <TextBlock Text="Прибытие:" Foreground="#FFE5E5DF" Grid.Row="6"/>
+        <TextBox Text="{Binding ArrivalTime}" Grid.Row="7" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,20" Grid.Column="1"/>
+
+        <TextBlock Text="Статус:" Foreground="#FFE5E5DF" Grid.Row="8"/>
+        <TextBox Text="{Binding Status}" Grid.Row="9" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,20" Grid.Column="1"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="10">
+            <Button Content="Отмена" Command="{Binding CancelCommand}" 
+                Margin="0,0,10,0" 
+                Background="#FF2D3250" 
+                Foreground="#FFE5E5DF"
+                Width="80" Height="30">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder" CornerRadius="0"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        Height="{TemplateBinding Height}"
+                        Width="{TemplateBinding Width}" >
+                            <ContentControl Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="Сохранить" Command="{Binding SaveCommand}" 
+                Width="80"
+                Background="#FF2D3250" 
+                Foreground="#FFE5E5DF">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="buttonBorder" CornerRadius="0"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        Height="{TemplateBinding Height}"
+                        Width="{TemplateBinding Width}" >
+                            <ContentControl Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

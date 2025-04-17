@@ -56,7 +56,7 @@ namespace Rubidium
 
             if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
             {
-                MessageBox.Show($"Введите логин и пароль {Password} & {_username}");
+                MessageBox.Show($"Введите логин и пароль");
                 return;
             }
 
