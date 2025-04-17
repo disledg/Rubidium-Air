@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Rubidium;
 
 public class EmployeeService
@@ -62,4 +63,5 @@ public class EmployeeService
 
     public List<Employee> GetCrewForFlight(int flightId)
         => _flightRepo.GetCrew(flightId);
+    public IQueryable<Employee> GetAllEmployees() => _employeeRepo.GetAll();
 }

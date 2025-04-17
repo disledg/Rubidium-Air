@@ -70,6 +70,10 @@ namespace Rubidium
             return _dbSet.Where(e => e.position == position).ToList();
         }
 
+        public IQueryable<Employee> GetAllEmployees()
+        {
+            return base.GetAll();
+        }
         public void AssignToFlight(int employeeId, int flightId)
         {
             var db = _context as AirportDBEntities1;

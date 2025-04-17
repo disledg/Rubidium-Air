@@ -6,7 +6,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using Rubidium.ORM.ViewModels.Flights;
 
 namespace Rubidium
 {
@@ -57,22 +59,24 @@ namespace Rubidium
         }
         private void AddFlight()
         {
-            Flights.Add(new Flight
-            {
-                flight_number = "NEW-001",
-                destination = "Париж",
-                departure_time = DateTime.Now.AddDays(1),
-                arrival_time = DateTime.Now.AddDays(1),
-                status = "Новый"
-            });
-        }
-        private void DelFlight()
-        {
-            //Flights.Remove(
+            var addWindow = new AddFlightsView();
+            var addViewModel = new AddFlightsViewModel(this, _flightService, addWindow);
+            addWindow.DataContext = addViewModel;
+            addWindow.Owner = Application.Current.MainWindow; // Делаем главное окно владельцем
+            addWindow.ShowDialog();
         }
         private void UpdFlights()
         {
+            if (SelectedFlight != null)
+            {
+                var editWindow = new EditFlightView();
+                var editViewModel = new EditFlightsViewModel(SelectedFlight, _flightService, editWindow);
+                editWindow.DataContext = editViewModel;
+                editWindow.Owner = Application.Current.MainWindow;
+                editWindow.ShowDialog();
 
+                LoadFlights(); // Обновляем список после редактирования
+            }
         }
         private void LoadFlights()
         {

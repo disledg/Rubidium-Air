@@ -1,0 +1,38 @@
+﻿<Window x:Class="Rubidium.AddEmployeesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rubidium"
+        mc:Ignorable="d"
+        Title="AddEmployees" Height="300" 
+        Width="400"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Фамилия:" Grid.Row="0"/>
+        <TextBox Text="{Binding LastName}" Grid.Row="0" Margin="0,0,0,10" Grid.Column="1"/>
+
+        <TextBlock Text="Имя:" Grid.Row="1"/>
+        <TextBox Text="{Binding FirstName}" Grid.Row="1" Margin="0,0,0,10" Grid.Column="1"/>
+
+        <TextBlock Text="Должность:" Grid.Row="2"/>
+        <TextBox Text="{Binding Position}" Grid.Row="2" Margin="0,0,0,10" Grid.Column="1"/>
+
+        <TextBlock Text="Контактные данные:" Grid.Row="3"/>
+        <TextBox Text="{Binding ContactInfo}" Grid.Row="3" Margin="0,0,0,20" Grid.Column="1"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="5">
+            <Button Content="Отмена" Command="{Binding CancelCommand}" Margin="0,0,10,0" Width="80"/>
+            <Button Content="Сохранить" Command="{Binding SaveCommand}" Width="80"/>
+        </StackPanel>
+    </Grid>
+</Window>

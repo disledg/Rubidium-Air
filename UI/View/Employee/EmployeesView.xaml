@@ -76,7 +76,7 @@
             <Separator Width="20" RenderTransformOrigin="1.918,0.58"/>
             <TextBlock Text="Система контроля сотрудников" FontWeight="Bold" FontSize="16" Height="25" Width="263" VerticalAlignment="Center"/>
         </StackPanel>
-        <DataGrid ItemsSource="{Binding Employee}"
+        <DataGrid ItemsSource="{Binding Employees}"
       AutoGenerateColumns="False"
       HeadersVisibility="Column"
       Background="White"

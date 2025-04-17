@@ -28,8 +28,8 @@ namespace Rubidium
             var authService = new AuthService(new UserRepository(dbContext, new PasswordHasher()),new  PasswordHasher());
             // Регистрируем страницы
             Navigator.RegisterPage("Flights", () => new FlightsViewModel(flightService));
-            Navigator.RegisterPage("Employees", () => new EmployeesViewModel());
-            Navigator.RegisterPage("Baggage", () => new BaggageViewModel());
+            Navigator.RegisterPage("Employees", () => new EmployeesViewModel(employeeService));
+            Navigator.RegisterPage("Baggage", () => new BaggageViewModel(baggageService));
 
             var AuthVM = new AuthViewModel(authService, employeeService, flightService, baggageService, Navigator);
 

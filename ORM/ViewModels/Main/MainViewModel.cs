@@ -30,8 +30,8 @@ namespace Rubidium
             _baggageService = baggageService;
             // Регистрация страниц
             _navigation.RegisterPage("Flights", () => new FlightsViewModel(flightService));
-            _navigation.RegisterPage("Employees", () => new EmployeesViewModel());
-            _navigation.RegisterPage("Baggage", () => new BaggageViewModel());
+            _navigation.RegisterPage("Employees", () => new EmployeesViewModel(employeeService));
+            _navigation.RegisterPage("Baggage", () => new BaggageViewModel(baggageService));
 
             // Инициализация команд
             NavigateToFlightsCommand = new RelayCommand(_ => NavigateTo("Flights"));
