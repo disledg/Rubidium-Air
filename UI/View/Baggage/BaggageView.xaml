@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#676f9d">
             <Button Content="Добавить" Command="{Binding AddBaggageCommand}" Margin="5" Width="80" Background="#FF2D3250" Foreground="#FFE5E5DF">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -38,10 +38,10 @@
                             Background="{TemplateBinding Background}"
                             Height="{TemplateBinding Height}"
                             Width="{TemplateBinding Width}" >
-                        <ContentControl Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}" />
+                            <ContentControl Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -60,10 +60,10 @@
                             Background="{TemplateBinding Background}"
                             Height="{TemplateBinding Height}"
                             Width="{TemplateBinding Width}" >
-                        <ContentControl Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}" />
+                            <ContentControl Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -79,7 +79,7 @@
         <DataGrid ItemsSource="{Binding Baggage}"
           AutoGenerateColumns="False"
           HeadersVisibility="Column"
-          Background="White"
+          Background="#676f9d"
           BorderBrush="#E0E0E0"
           BorderThickness="1"
           RowBackground="White"
