@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Rubidium.ORM.ViewModels.Flights;
@@ -17,6 +13,9 @@ namespace Rubidium
         private readonly FlightService _flightService;
         private ObservableCollection<Flight> _flights;
         private Flight _selectedFlight;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public Flight SelectedFlight
         {
             get => _selectedFlight;
@@ -24,8 +23,8 @@ namespace Rubidium
             {
                 _selectedFlight = value;
                 OnPropertyChanged();
-                // Можно обновить состояние команды удаления
-                ((RelayCommand)DelFlightCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)DelFlightCommand)?.RaiseCanExecuteChanged();
+                ((RelayCommand)UpdFlightCommand)?.RaiseCanExecuteChanged();
             }
         }
 
@@ -38,36 +37,63 @@ namespace Rubidium
                 OnPropertyChanged();
             }
         }
+
         public ICommand AddFlightCommand { get; }
         public ICommand DelFlightCommand { get; }
         public ICommand UpdFlightCommand { get; }
 
         public FlightsViewModel(FlightService flightService)
         {
-            _flightService = flightService;
-            Flights = new ObservableCollection<Flight>();
+            try
+            {
+                _flightService = flightService ?? throw new ArgumentNullException(nameof(flightService));
+                Flights = new ObservableCollection<Flight>();
 
-            LoadFlights();
+                LoadFlights();
 
-            AddFlightCommand = new RelayCommand(_ => AddFlight());
-            DelFlightCommand = new RelayCommand(
-                execute: _ => DeleteSelectedFlight(),
-                canExecute: _ => SelectedFlight != null
-            ); 
-
-            UpdFlightCommand = new RelayCommand(_ => UpdFlights());
+                AddFlightCommand = new RelayCommand(_ => AddFlight());
+                DelFlightCommand = new RelayCommand(
+                    execute: _ => DeleteSelectedFlight(),
+                    canExecute: _ => SelectedFlight != null
+                );
+                UpdFlightCommand = new RelayCommand(
+                    execute: _ => UpdFlights(),
+                    canExecute: _ => SelectedFlight != null
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при инициализации модели представления рейсов: {ex.Message}",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                Flights = new ObservableCollection<Flight>();
+            }
         }
+
         private void AddFlight()
         {
-            var addWindow = new AddFlightsView();
-            var addViewModel = new AddFlightsViewModel(this, _flightService, addWindow);
-            addWindow.DataContext = addViewModel;
-            addWindow.Owner = Application.Current.MainWindow; // Делаем главное окно владельцем
-            addWindow.ShowDialog();
+            try
+            {
+                var addWindow = new AddFlightsView();
+                var addViewModel = new AddFlightsViewModel(this, _flightService, addWindow);
+                addWindow.DataContext = addViewModel;
+                addWindow.Owner = Application.Current.MainWindow;
+                addWindow.ShowDialog();
+
+                // Обновляем список после добавления
+                LoadFlights();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении рейса: {ex.Message}",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
         private void UpdFlights()
         {
-            if (SelectedFlight != null)
+            if (SelectedFlight == null) return;
+
+            try
             {
                 var editWindow = new EditFlightView();
                 var editViewModel = new EditFlightsViewModel(SelectedFlight, _flightService, editWindow);
@@ -75,27 +101,58 @@ namespace Rubidium
                 editWindow.Owner = Application.Current.MainWindow;
                 editWindow.ShowDialog();
 
-                LoadFlights(); // Обновляем список после редактирования
+                LoadFlights();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при редактировании рейса: {ex.Message}",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private void LoadFlights()
+
+        public void LoadFlights()
         {
-            var flightsList = _flightService.GetAllFlights(); // Получаем List<Flight>
-            Flights = new ObservableCollection<Flight>(flightsList);
+            try
+            {
+                var flightsList = _flightService.GetAllFlights();
+                Flights = new ObservableCollection<Flight>(flightsList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке списка рейсов: {ex.Message}",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                Flights = new ObservableCollection<Flight>();
+            }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
         private void DeleteSelectedFlight()
         {
-            if (SelectedFlight != null)
+            if (SelectedFlight == null) return;
+
+            try
             {
-                _flightService.DeleteFlight(SelectedFlight.Id); // Предполагая, что у вас есть такой метод
-                Flights.Remove(SelectedFlight);
-                SelectedFlight = null; // Сбрасываем выделение
+                // Сохраняем выбранный рейс перед удалением
+                var flightToDelete = SelectedFlight;
+                _flightService.DeleteFlight(flightToDelete.Id);
+                Flights.Remove(flightToDelete);
+                SelectedFlight = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при удалении рейса: {ex.Message}",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            try
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Ошибка при обновлении свойства {name}: {ex.Message}");
             }
         }
     }

@@ -23,7 +23,6 @@ namespace Rubidium
             _employeeService = employeeService;
             _window = window;
 
-            // Инициализируем свойства текущими значениями
             LastName = employee.last_name;
             FirstName = employee.first_name;
             Position = employee.position;
@@ -43,14 +42,26 @@ namespace Rubidium
 
         private void SaveChanges(object parameter)
         {
-            _employeeService.UpdateEmployee(
+            try
+            {
+                _employeeService.UpdateEmployee(
                 _originalEmployee.Id,
                 FirstName,
                 LastName,
                 Position,
                 ContactInfo);
 
-            _window.Close();
+                _window.Close();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
 
         private void Cancel(object parameter)

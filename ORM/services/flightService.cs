@@ -17,8 +17,8 @@ public class FlightService
     // Создание рейса
     public void CreateFlight(string number, string destination, DateTime departure, DateTime arrival, string status)
     {
-        //if (departure >= arrival)
-        //    throw new ArgumentException("Время вылета должно быть раньше прибытия");
+        if (departure >= arrival)
+            throw new ArgumentException("Время вылета должно быть раньше прибытия");
 
         var flight = new Flight
         {

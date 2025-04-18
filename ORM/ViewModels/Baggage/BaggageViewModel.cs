@@ -35,31 +35,52 @@ namespace Rubidium
 
         public BaggageViewModel(BaggageService baggageService)
         {
-            _baggageService = baggageService ?? throw new ArgumentNullException(nameof(baggageService));
+            try
+            {
+                _baggageService = baggageService ?? throw new ArgumentNullException(nameof(baggageService));
 
-            // Загрузка данных
-            LoadBaggage();
+                LoadBaggage();
 
-            // Инициализация команд
-            AddBaggageCommand = new RelayCommand(_ => AddBaggage());
-            DelBaggageCommand = new RelayCommand(_ => DeleteBaggage(), _ => SelectedBaggage != null);
-            UpdBaggageCommand = new RelayCommand(_ => UpdateBaggage(), _ => SelectedBaggage != null);
+                AddBaggageCommand = new RelayCommand(_ => AddBaggage());
+                DelBaggageCommand = new RelayCommand(_ => DeleteBaggage(), _ => SelectedBaggage != null);
+                UpdBaggageCommand = new RelayCommand(_ => UpdateBaggage(), _ => SelectedBaggage != null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при инициализации ViewModel: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void LoadBaggage()
+        public void LoadBaggage()
         {
-            var baggageList = _baggageService.GetAllBaggage().ToList();
-            Baggage = new ObservableCollection<Baggage>(baggageList);
-            OnPropertyChanged(nameof(Baggage));
+            try
+            {
+                var baggageList = _baggageService.GetAllBaggage().ToList();
+                Baggage = new ObservableCollection<Baggage>(baggageList);
+                OnPropertyChanged(nameof(Baggage));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке багажа: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                Baggage = new ObservableCollection<Baggage>();
+                OnPropertyChanged(nameof(Baggage));
+            }
         }
 
         private void AddBaggage()
         {
-            var addWindow = new AddBaggageView();
-            var addViewModel = new AddBaggageViewModel(this, _baggageService, addWindow);
-            addWindow.DataContext = addViewModel;
-            addWindow.Owner = Application.Current.MainWindow; // Делаем главное окно владельцем
-            addWindow.ShowDialog();
+            try
+            {
+                var addWindow = new AddBaggageView();
+                var addViewModel = new AddBaggageViewModel(this, _baggageService, addWindow);
+                addWindow.DataContext = addViewModel;
+                addWindow.Owner = Application.Current.MainWindow;
+                addWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при открытии окна добавления багажа: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void DeleteBaggage()
@@ -73,13 +94,15 @@ namespace Rubidium
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при удалении багажа: {ex.Message}");
+                MessageBox.Show($"Ошибка при удалении багажа: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void UpdateBaggage()
         {
-            if (SelectedBaggage != null)
+            if (SelectedBaggage == null) return;
+
+            try
             {
                 var editWindow = new EditBaggageView();
                 var editViewModel = new EditBaggageViewModel(SelectedBaggage, _baggageService, editWindow);
@@ -87,13 +110,24 @@ namespace Rubidium
                 editWindow.Owner = Application.Current.MainWindow;
                 editWindow.ShowDialog();
 
-                LoadBaggage(); // Обновляем список после редактирования
+                LoadBaggage();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при обновлении багажа: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            try
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Ошибка при обновлении свойства {propertyName}: {ex.Message}");
+            }
         }
     }
 }

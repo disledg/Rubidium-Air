@@ -23,9 +23,6 @@ namespace Rubidium
             if (string.IsNullOrEmpty(flight.flight_number))
                 throw new ArgumentException("Номер рейса обязателен");
 
-            //if (flight.departure_time >= flight.arrival_time)
-            //    throw new ArgumentException("Время вылета должно быть раньше времени прилёта");
-
             var db = _context as AirportDBEntities1;
             if (db.Flights.Any(f => f.flight_number == flight.flight_number))
                 throw new InvalidOperationException("Рейс с таким номером уже существует");
