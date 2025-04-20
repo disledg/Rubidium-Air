@@ -25,7 +25,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Номер багажа:" Foreground="#FFE5E5DF" Grid.Row="0"/>
+        <TextBlock Text="Контактные данные пассажира:" Foreground="#FFE5E5DF" Grid.Row="0"/>
         <TextBox Text="{Binding PassangerNumber}" Grid.Row="1" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
 
         <TextBlock Text="Имя пассажира:" Foreground="#FFE5E5DF" Grid.Row="2"/>
@@ -35,7 +35,15 @@
         <TextBox Text="{Binding PassengerSername}" Grid.Row="5" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
 
         <TextBlock Text="Номер рейса:" Foreground="#FFE5E5DF" Grid.Row="6"/>
-        <TextBox Text="{Binding FlightId}" Grid.Row="7" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,20" Grid.Column="1"/>
+        <ComboBox ItemsSource="{Binding AvailableFlights}" 
+                  SelectedValue="{Binding FlightId}"
+                  DisplayMemberPath="flight_number"
+                  SelectedValuePath="Id"
+                  Grid.Row="7"
+                  Foreground="#FFE5E5DF"
+                  BorderBrush="Transparent"
+                  Background="#424769"
+                  Margin="0,0,0,20"/>
 
         <TextBlock Text="Вес:" Foreground="#FFE5E5DF" Grid.Row="8"/>
         <TextBox Text="{Binding Weight}" Grid.Row="9" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,20" Grid.Column="1"/>

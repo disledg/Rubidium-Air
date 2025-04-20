@@ -86,7 +86,6 @@ namespace Rubidium
         private void DeleteBaggage()
         {
             if (SelectedBaggage == null) return;
-
             try
             {
                 _baggageService.RemoveBaggage(SelectedBaggage.Id);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Rubidium.ORM.ViewModels.Flights
+namespace Rubidium
 {
     public class AddFlightsViewModel : INotifyPropertyChanged
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,13 +24,23 @@ namespace Rubidium
         private decimal _weight;
         private string _status = "Registered";
 
-        public int PassengerNumber
+        private ObservableCollection<Flight> _availableFlights = new ObservableCollection<Flight>();
+        public ObservableCollection<Flight> AvailableFlights
+        {
+            get => _availableFlights;
+            set
+            {
+                _availableFlights = value;
+                OnPropertyChanged(nameof(AvailableFlights));
+            }
+        }
+        public int PassangerNumber
         {
             get => _passengerNumber;
             set
             {
                 _passengerNumber = value;
-                OnPropertyChanged(nameof(PassengerNumber));
+                OnPropertyChanged(nameof(PassangerNumber));
             }
         }
 
@@ -93,6 +104,9 @@ namespace Rubidium
             _window = window;
             _baggageService = baggageService;
             _parentViewModel = parentViewModel;
+
+            LoadAvailableFlights();
+
             SaveCommand = new RelayCommand(Save);
             CancelCommand = new RelayCommand(Cancel);
         }
@@ -101,15 +115,12 @@ namespace Rubidium
         {
             try
             {
-                int baggageId = new Random().Next(1000, 9999);
-
                 _baggageService.RegisterBaggage(
-                    baggageId,
                     PassengerSername,
                     Weight,
                     FlightId,
                     PassengerName,
-                    PassengerNumber
+                    PassangerNumber
                 );
 
                 _window.DialogResult = true;
@@ -123,6 +134,28 @@ namespace Rubidium
             catch (Exception ex)
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void LoadAvailableFlights()
+        {
+            try
+            {
+                var flights = _baggageService.GetAllFlights()
+                    .OrderBy(f => f.departure_time)  // Сортировка по времени вылета
+                    .ToList();
+
+                AvailableFlights.Clear();
+                foreach (var flight in flights)
+                {
+                    AvailableFlights.Add(flight);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке рейсов: {ex.Message}",
+                              "Ошибка",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
             }
         }
 

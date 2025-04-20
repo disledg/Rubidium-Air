@@ -77,20 +77,21 @@
             <TextBlock Text="Система контроля рейсов" FontWeight="Bold" FontSize="16" Height="25" Width="218" VerticalAlignment="Center"/>
         </StackPanel>
         <DataGrid ItemsSource="{Binding Flights}"
-          AutoGenerateColumns="False"
-          HeadersVisibility="Column"
-          Background="White"
-          BorderBrush="#E0E0E0"
-          BorderThickness="1"
-          RowBackground="White"
-          AlternatingRowBackground="#FAFAFA"
-          GridLinesVisibility="None"
-          FontSize="14"
-          ColumnWidth="*"
-          CanUserResizeRows="False"
-          CanUserAddRows="False"
-          VerticalGridLinesBrush="Transparent"
-          HorizontalGridLinesBrush="Transparent">
+                  SelectedItem="{Binding SelectedFlight, Mode=TwoWay}" 
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  Background="White"
+                  BorderBrush="#E0E0E0"
+                  BorderThickness="1"
+                  RowBackground="White"
+                  AlternatingRowBackground="#FAFAFA"
+                  GridLinesVisibility="None"
+                  FontSize="14"
+                  ColumnWidth="*"
+                  CanUserResizeRows="False"
+                  CanUserAddRows="False"
+                  VerticalGridLinesBrush="Transparent"
+                  HorizontalGridLinesBrush="Transparent">   
 
 
             <!-- Эффекты -->

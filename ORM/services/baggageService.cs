@@ -16,14 +16,13 @@ namespace Rubidium
         }
 
         // Добавление багажа
-        public void RegisterBaggage(int baggageId, string passengerSername, decimal weight, int flightId, string passengerName, int passengerNumber)
+        public void RegisterBaggage(string passengerSername, decimal weight, int flightId, string passengerName, int passengerNumber)
         {
             if (_flightRepo.GetById(flightId) == null)
                 throw new KeyNotFoundException("Рейс не существует");
 
             var baggage = new Baggage()
             {
-                Id = baggageId,
                 passenger_number = passengerNumber,
                 passenger_sername = passengerSername,
                 passenger_name = passengerName,
@@ -59,5 +58,6 @@ namespace Rubidium
         public List<Baggage> GetBaggageByPassenger(int passengerNumber)
             => _baggageRepo.GetByPassengerNumber(passengerNumber);
         public IQueryable<Baggage> GetAllBaggage() => _baggageRepo.GetAll();
+        public IQueryable<Flight> GetAllFlights() => _flightRepo.GetAll();
     }
 }

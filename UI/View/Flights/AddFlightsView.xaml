@@ -30,11 +30,20 @@
         <TextBox Text="{Binding Destination}" Grid.Row="3" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
 
         <TextBlock Text="Вылет:" Foreground="#FFE5E5DF" Grid.Row="4"/>
-        <TextBox Text="{Binding DepartureTime}" Grid.Row="5" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,10" Grid.Column="1"/>
-
+        <DatePicker SelectedDate="{Binding DepartureTime}" 
+                    Grid.Row="5"
+                    Background="#424769"
+                    Foreground="#FFE5E5DF"
+                    BorderBrush="Transparent"
+                    Margin="0,0,0,10"/>
+        
         <TextBlock Text="Прибытие:" Foreground="#FFE5E5DF" Grid.Row="6"/>
-        <TextBox Text="{Binding ArrivalTime}" Grid.Row="7" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,20" Grid.Column="1"/>
-
+        <DatePicker SelectedDate="{Binding ArrivalTime}" 
+                    Grid.Row="7"
+                    Background="#424769"
+                    Foreground="#FFE5E5DF"
+                    BorderBrush="Transparent"
+                    Margin="0,0,0,10"/>
         <TextBlock Text="Статус:" Foreground="#FFE5E5DF" Grid.Row="8"/>
         <TextBox Text="{Binding Status}" Grid.Row="9" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" Margin="0,0,0,20" Grid.Column="1"/>
 

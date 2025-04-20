@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using Rubidium.ORM.ViewModels.Flights;
+using Rubidium;
 
 namespace Rubidium
 {
