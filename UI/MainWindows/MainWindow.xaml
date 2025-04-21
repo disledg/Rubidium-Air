@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Rubidium"
         mc:Ignorable="d"
         Title="Rubidium AIR" Height="650" Width="1000"
-        Background="#676f9d" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
+        Background="#1E1E2E" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:FlightsViewModel}">
             <local:FlightsView/>
@@ -29,47 +29,55 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Rectangle Fill="#424769" RadiusX="0" RadiusY="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="-16,0,0,0"/>
+        <!-- Боковая панель навигации -->
+        <Rectangle Fill="#181825" RadiusX="0" RadiusY="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="-16,0,0,0"/>
 
+        <!-- Верхняя панель -->
+        <Rectangle Fill="#11111B" RadiusX="0" RadiusY="0" Grid.ColumnSpan="6" Height="60" VerticalAlignment="Top"/>
+
+        <!-- Кнопки навигации с увеличенными отступами для лучшего восприятия -->
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employees" 
                               Command="{Binding NavigateToEmployeesCommand}" 
-                              Height="40" Margin="0,100,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                              Height="50" Margin="0,40,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Flights" 
                               Command="{Binding NavigateToFlightsCommand}" 
-                              Height="40" Margin="0,145,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                              Height="50" Margin="0,95,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Baggages" 
                               Command="{Binding NavigateToBaggageCommand}" 
-                              Height="40" Margin="0,195,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Rectangle Fill="#2d3250" RadiusX="0" RadiusY="0" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="0,0,0,590" Grid.Column="1"/>
+                              Height="50" Margin="0,150,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
-        <!-- Заменяем Frame на ContentControl -->
+        <!-- Контент -->
         <ContentControl Grid.Column="3" Grid.Row="1" Content="{Binding CurrentPage}" Grid.ColumnSpan="3" Margin="10,20,10,0" Grid.RowSpan="2"/>
 
-        <Label Content="Rubidium AIR" FontSize="26" FontFamily="Wattauchimma" Grid.Column="2" Foreground="#e5e5df" 
-               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,2,0,0" Grid.RowSpan="2"/>
-        <Button Height="25" Width="25" Margin="765,8,10,598" Grid.Column="5" Grid.RowSpan="2" Click="Close_Click">
+        <!-- Логотип и название -->
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <TextBlock Text="R" FontSize="32" FontWeight="Bold" Foreground="#CBA6F7" Margin="0,0,0,0"/>
+            <TextBlock Text="ubidium AIR" FontSize="24" FontWeight="SemiBold" Foreground="#F5E0DC" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Кнопка закрытия - стилизованная и с эффектом наведения -->
+        <Button Height="30" Width="30" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,15,0" Click="Close_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="Bd" Background="Transparent">
+                    <Border x:Name="Bd" Background="Transparent" CornerRadius="15">
                         <Path x:Name="Pt" Data="M0,0 M0.2,0.2 L 0.8,0.8 M0.2,0.8 L0.8,0.2 M1,1"
-              Stretch="Uniform" Stroke="#e5e5df" StrokeThickness="2"/>
+                             Stretch="Uniform" Stroke="#F5E0DC" StrokeThickness="2"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Bd" Property="Background" Value="#f9b17a"/>
-                            <Setter TargetName="Pt" Property="Stroke" Value="#2d3250"/>
+                            <Setter TargetName="Bd" Property="Background" Value="#F38BA8"/>
+                            <Setter TargetName="Pt" Property="Stroke" Value="#11111B"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-
     </Grid>
 </Window>

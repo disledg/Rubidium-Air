@@ -5,69 +5,150 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rubidium"
         mc:Ignorable="d"
-        Title="Вход" Background="#676f9d" Height="250" Width="354">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        Title="Вход" Background="#1E1E2E" Height="380" Width="380"
+        WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                CornerRadius="6" Padding="2">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" 
+                                         HorizontalScrollBarVisibility="Hidden" 
+                                         VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        
-        <!-- Заголовок -->
-        <TextBlock Text="Вход в приложение управления аэропортом RubidiumAir" 
-                   Grid.Row="0"
-                   TextWrapping="Wrap"
-                   TextAlignment="Center"
-                   FontSize="16"
-                   Margin="0,0,0,10" />
+        <Style x:Key="ModernPasswordBox" TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                CornerRadius="6" Padding="2">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" 
+                                         HorizontalScrollBarVisibility="Hidden" 
+                                         VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
-        <!-- Поле логина -->
-        <StackPanel Grid.Row="1" Margin="0,0,0,5">
-            <TextBlock Text="Логин" FontSize="14" Foreground="#FFE5E5DF"/>
-            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE5E5DF" BorderBrush="#00ABADB3" Background="#424769" FontSize="16" Height="22" >
-                
-            </TextBox>
-        </StackPanel>
+    <Border CornerRadius="10" BorderThickness="1" BorderBrush="#313244">
+        <Grid>
+            <!-- Верхняя панель с заголовком и кнопкой закрытия -->
+            <Grid Height="40" VerticalAlignment="Top" Background="#11111B">
+                <TextBlock Text="Rubidium AIR" FontSize="18" FontWeight="SemiBold" Foreground="#F5E0DC" 
+                           VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+            </Grid>
 
-        <!-- Поле пароля -->
-        <StackPanel Grid.Row="2" Margin="0,0,0,10">
-            <TextBlock Text="Пароль" FontSize="14" Foreground="#FFE5E5DF"/>
-            <PasswordBox x:Name="PasswordBox" Foreground="#FFE5E5DF" Background="#424769" PasswordChanged="PasswordBox_PasswordChanged" FontSize="16" Height="22" BorderBrush="#00ABADB3">
+            <Grid Margin="30,60,30,30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            </PasswordBox>
-        </StackPanel>
+                <!-- Заголовок -->
+                <TextBlock Text="Вход в систему управления" 
+                           Grid.Row="0"
+                           FontWeight="SemiBold"
+                           TextAlignment="Center"
+                           FontSize="22"
+                           Foreground="#F5E0DC"
+                           Margin="0,0,0,30" />
 
-        <!-- Кнопка входа -->
-        <Button Grid.Row="3" 
-                Content="Войти" 
-                Width="140"
-                HorizontalAlignment="Center"
-                Background="#FF2D3250" 
-                Foreground="#FFE5E5DF"
-                CommandParameter="{Binding ElementName=PasswordBox}"
-                Command="{Binding AuntificationCommand}" Margin="0,0,0,-40">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="buttonBorder" CornerRadius="20"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            Background="{TemplateBinding Background}"
-            Height="{TemplateBinding Height}"
-            Width="{TemplateBinding Width}" >
-                        <ContentControl Margin="{TemplateBinding Padding}"
-            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-            Content="{TemplateBinding Content}" />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-    </Grid>
+                <!-- Поле логина -->
+                <StackPanel Grid.Row="1" Margin="0,0,0,20">
+                    <TextBlock Text="Логин" FontSize="14" Foreground="#CDD6F4" Margin="0,0,0,8"/>
+                    <TextBox Style="{StaticResource ModernTextBox}" 
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                             Height="40"/>
+                </StackPanel>
+
+                <!-- Поле пароля -->
+                <StackPanel Grid.Row="2" Margin="0,0,0,30">
+                    <TextBlock Text="Пароль" FontSize="14" Foreground="#CDD6F4" Margin="0,0,0,8"/>
+                    <PasswordBox x:Name="PasswordBox" 
+                                 Style="{StaticResource ModernPasswordBox}"
+                                 PasswordChanged="PasswordBox_PasswordChanged" 
+                                 Height="40"/>
+                </StackPanel>
+
+                <!-- Кнопка входа -->
+                <Button Grid.Row="3" 
+                        Content="ВОЙТИ" 
+                        Width="200"
+                        Height="45"
+                        HorizontalAlignment="Center"
+                        CommandParameter="{Binding ElementName=PasswordBox}"
+                        Command="{Binding AuntificationCommand}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="buttonBorder" CornerRadius="8"
+                                    Background="#CBA6F7"
+                                    Height="{TemplateBinding Height}"
+                                    Width="{TemplateBinding Width}">
+                                <TextBlock Text="{TemplateBinding Content}" 
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontWeight="Bold"
+                                           FontSize="14"
+                                           Foreground="#11111B"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="buttonBorder" Property="Background" Value="#F5C2E7"/>
+                                    <Setter TargetName="buttonBorder" Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#CBA6F7" Opacity="0.6"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter TargetName="buttonBorder" Property="Background" Value="#B4BEFE"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

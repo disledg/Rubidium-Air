@@ -15,13 +15,26 @@ using System.Windows.Shapes;
 namespace Rubidium
 {
     /// <summary>
-    /// Interaction logic for EditBaggageView.xaml
+    /// Логика взаимодействия для EditFlightView.xaml
     /// </summary>
     public partial class EditFlightView : Window
     {
-        public EditFlightView()
+        public EditFlightView(Flight flight, FlightService flightService)
         {
             InitializeComponent();
+            DataContext = new EditFlightsViewModel(flight, flightService, this);
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        // Позволяет перетаскивать окно за заголовок
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
         }
     }
 }

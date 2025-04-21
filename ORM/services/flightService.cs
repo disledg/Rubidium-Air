@@ -46,7 +46,7 @@ public class FlightService
     public void UpdateFlight(int id, string newNumber, string newDestination,
                            DateTime newDeparture, DateTime newArrival, string newStatus)
     {
-        var flight = _flightRepo.GetById(id) ?? throw new KeyNotFoundException("Рейс не найден");
+        var flight = _flightRepo.GetById(id);
 
         flight.flight_number = newNumber;
         flight.destination = newDestination;

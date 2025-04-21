@@ -48,6 +48,7 @@ namespace Rubidium
             {
                 _flightService = flightService ?? throw new ArgumentNullException(nameof(flightService));
                 Flights = new ObservableCollection<Flight>();
+                UpdFlightCommand = new RelayCommand(UpdateFlight, param => SelectedFlight != null);
 
                 LoadFlights();
 
@@ -95,7 +96,7 @@ namespace Rubidium
 
             try
             {
-                var editWindow = new EditFlightView();
+                var editWindow = new EditFlightView(SelectedFlight, _flightService);
                 var editViewModel = new EditFlightsViewModel(SelectedFlight, _flightService, editWindow);
                 editWindow.DataContext = editViewModel;
                 editWindow.Owner = Application.Current.MainWindow;
@@ -107,6 +108,22 @@ namespace Rubidium
             {
                 MessageBox.Show($"Ошибка при редактировании рейса: {ex.Message}",
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void UpdateFlight(object parameter)
+        {
+            if (SelectedFlight != null)
+            {
+                var editWindow = new EditFlightView(SelectedFlight, _flightService);
+                editWindow.ShowDialog();
+
+                // После закрытия окна обновляем коллекцию, чтобы отразить изменения
+                RefreshFlights();
+            }
+            else
+            {
+                MessageBox.Show("Выберите рейс для редактирования", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -141,6 +158,15 @@ namespace Rubidium
             {
                 MessageBox.Show($"Ошибка при удалении рейса: {ex.Message}",
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void RefreshFlights()
+        {
+            var flights = _flightService.GetAllFlights();
+            Flights.Clear();
+            foreach (var flight in flights)
+            {
+                Flights.Add(flight);
             }
         }
 

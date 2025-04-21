@@ -120,6 +120,8 @@ namespace Rubidium
             }
         }
 
+
+
         private void Cancel(object parameter)
         {
             _window.DialogResult = false;
