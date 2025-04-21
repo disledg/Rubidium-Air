@@ -80,7 +80,6 @@ namespace Rubidium
                 addWindow.Owner = Application.Current.MainWindow;
                 addWindow.ShowDialog();
 
-                // Обновляем список после добавления
                 LoadFlights();
             }
             catch (Exception ex)
@@ -118,7 +117,6 @@ namespace Rubidium
                 var editWindow = new EditFlightView(SelectedFlight, _flightService);
                 editWindow.ShowDialog();
 
-                // После закрытия окна обновляем коллекцию, чтобы отразить изменения
                 RefreshFlights();
             }
             else
@@ -148,7 +146,6 @@ namespace Rubidium
 
             try
             {
-                // Сохраняем выбранный рейс перед удалением
                 var flightToDelete = SelectedFlight;
                 _flightService.DeleteFlight(flightToDelete.Id);
                 Flights.Remove(flightToDelete);

@@ -34,13 +34,10 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <!-- Боковая панель навигации -->
         <Rectangle Fill="#181825" RadiusX="0" RadiusY="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="-16,0,0,0"/>
 
-        <!-- Верхняя панель -->
         <Rectangle Fill="#11111B" RadiusX="0" RadiusY="0" Grid.ColumnSpan="6" Height="60" VerticalAlignment="Top"/>
 
-        <!-- Кнопки навигации с увеличенными отступами для лучшего восприятия -->
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employees" 
                               Command="{Binding NavigateToEmployeesCommand}" 
                               Height="50" Margin="0,40,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
@@ -53,16 +50,13 @@
                               Command="{Binding NavigateToBaggageCommand}" 
                               Height="50" Margin="0,150,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
-        <!-- Контент -->
         <ContentControl Grid.Column="3" Grid.Row="1" Content="{Binding CurrentPage}" Grid.ColumnSpan="3" Margin="10,20,10,0" Grid.RowSpan="2"/>
 
-        <!-- Логотип и название -->
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
             <TextBlock Text="R" FontSize="32" FontWeight="Bold" Foreground="#CBA6F7" Margin="0,0,0,0"/>
             <TextBlock Text="ubidium AIR" FontSize="24" FontWeight="SemiBold" Foreground="#F5E0DC" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <!-- Кнопка закрытия - стилизованная и с эффектом наведения -->
         <Button Height="30" Width="30" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,15,0" Click="Close_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">

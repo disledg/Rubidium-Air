@@ -40,7 +40,6 @@
     </UserControl.Resources>
 
     <DockPanel LastChildFill="True">
-        <!-- Верхняя панель управления -->
         <Grid DockPanel.Dock="Top" Height="60" Background="#11111B">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0">
                 <Button Content="Добавить" Command="{Binding AddFlightCommand}" Style="{StaticResource ActionButton}" Margin="0,0,10,0"/>
@@ -57,7 +56,6 @@
             </StackPanel>
         </Grid>
 
-        <!-- Панель поиска и фильтрации -->
         <Grid DockPanel.Dock="Top" Height="50" Background="#1E1E2E">
             <StackPanel Orientation="Horizontal" Margin="15,0" VerticalAlignment="Center">
                 <Border Background="#313244" CornerRadius="6" Width="250" Height="32">
@@ -82,7 +80,6 @@
             </StackPanel>
         </Grid>
 
-        <!-- DataGrid -->
         <DataGrid ItemsSource="{Binding Flights}"
                   SelectedItem="{Binding SelectedFlight, Mode=TwoWay}" 
                   AutoGenerateColumns="False"
@@ -101,7 +98,6 @@
                   HorizontalGridLinesBrush="Transparent"
                   Margin="15">
 
-            <!-- Стиль заголовков -->
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="#11111B"/>
@@ -114,7 +110,6 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
-            <!-- Стиль строк -->
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Height" Value="48"/>
@@ -133,7 +128,6 @@
                 </Style>
             </DataGrid.RowStyle>
 
-            <!-- Стиль ячеек -->
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="BorderThickness" Value="0"/>
@@ -147,7 +141,6 @@
                 </Style>
             </DataGrid.CellStyle>
 
-            <!-- Колонки -->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер рейса" 
                                   Binding="{Binding flight_number}" 

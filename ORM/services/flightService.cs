@@ -14,7 +14,6 @@ public class FlightService
         _baggageRepo = baggageRepo;
     }
 
-    // Создание рейса
     public void CreateFlight(string number, string destination, DateTime departure, DateTime arrival, string status)
     {
         if (departure >= arrival)
@@ -32,7 +31,6 @@ public class FlightService
         _flightRepo.Add(flight);
     }
 
-    // Удаление рейса
     public void DeleteFlight(int flightId)
     {
         var baggageCount = _baggageRepo.GetByFlightId(flightId).Count;
@@ -42,7 +40,6 @@ public class FlightService
         _flightRepo.Delete(flightId);
     }
 
-    // Обновление рейса
     public void UpdateFlight(int id, string newNumber, string newDestination,
                            DateTime newDeparture, DateTime newArrival, string newStatus)
     {
@@ -57,7 +54,6 @@ public class FlightService
         _flightRepo.Update(flight);
     }
 
-    // Поиск рейсов
     public List<Flight> SearchFlights(string byNumber = null, string byDestination = null)
     {
         var query = _flightRepo.GetAll().AsQueryable();
@@ -71,7 +67,6 @@ public class FlightService
         return query.ToList();
     }
 
-    // Дополнительный метод для эпика
     public List<Flight> GetFlightsByStatus(string status)
         => _flightRepo.GetByStatus(status);
     public IQueryable<Flight> GetAllFlights() => _flightRepo.GetAll();

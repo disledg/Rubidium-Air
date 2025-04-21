@@ -71,7 +71,6 @@
 
     <Border CornerRadius="10" BorderThickness="1" BorderBrush="#313244">
         <Grid>
-            <!-- Верхняя панель с заголовком и кнопкой закрытия -->
             <Grid Height="40" VerticalAlignment="Top" Background="#11111B">
                 <TextBlock Text="Rubidium AIR" FontSize="18" FontWeight="SemiBold" Foreground="#F5E0DC" 
                            VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0"/>
@@ -85,7 +84,6 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- Заголовок -->
                 <TextBlock Text="Вход в систему управления" 
                            Grid.Row="0"
                            FontWeight="SemiBold"
@@ -94,7 +92,6 @@
                            Foreground="#F5E0DC"
                            Margin="0,0,0,30" />
 
-                <!-- Поле логина -->
                 <StackPanel Grid.Row="1" Margin="0,0,0,20">
                     <TextBlock Text="Логин" FontSize="14" Foreground="#CDD6F4" Margin="0,0,0,8"/>
                     <TextBox Style="{StaticResource ModernTextBox}" 
@@ -102,7 +99,6 @@
                              Height="40"/>
                 </StackPanel>
 
-                <!-- Поле пароля -->
                 <StackPanel Grid.Row="2" Margin="0,0,0,30">
                     <TextBlock Text="Пароль" FontSize="14" Foreground="#CDD6F4" Margin="0,0,0,8"/>
                     <PasswordBox x:Name="PasswordBox" 
@@ -111,7 +107,6 @@
                                  Height="40"/>
                 </StackPanel>
 
-                <!-- Кнопка входа -->
                 <Button Grid.Row="3" 
                         Content="ВОЙТИ" 
                         Width="200"
