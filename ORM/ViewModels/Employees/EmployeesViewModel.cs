@@ -121,9 +121,7 @@ namespace Rubidium
 
             try
             {
-                var editWindow = new EditEmployeeView();
-                var editViewModel = new EditEmployeeViewModel(SelectedEmployee, _employeeService, editWindow);
-                editWindow.DataContext = editViewModel;
+                var editWindow = new EditEmployeeView(SelectedEmployee, _employeeService);
                 editWindow.Owner = Application.Current.MainWindow;
                 editWindow.ShowDialog();
 

@@ -9,18 +9,19 @@ using System.Windows.Input;
 
 namespace Rubidium
 {
-    internal class EditBaggageViewModel : INotifyPropertyChanged
+    public class EditBaggageViewModel : INotifyPropertyChanged
     {
         private readonly BaggageService _baggageService;
         private readonly Window _window;
         private Baggage _originalBaggage;
         private int _baggageId;
-        private int _passenger_number;
-        private string _passenger_name;
-        private string _passenger_sername;
+        private int _passengerNumber;
+        private string _passengerName;
+        private string _passengerSername;
         private int _flightId;
         private decimal _weight;
         private string _status;
+        private List<string> _baggageStatuses;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -32,14 +33,17 @@ namespace Rubidium
             _window = window;
             _originalBaggage = baggage;
 
-            // Заполняем свойства данными из переданного рейса
+            // Заполняем свойства данными из переданного багажа
             _baggageId = baggage.Id;
-            _passenger_number = baggage.passenger_number;
-            _passenger_name = baggage.passenger_name;
-            _passenger_sername = baggage.passenger_sername;
-            _flightId = baggage.flight_id;
-            _weight = baggage.weight;
-            _status = baggage.status;
+            PassengerNumber = baggage.passenger_number;
+            PassengerName = baggage.passenger_name;
+            PassengerSername = baggage.passenger_sername;
+            FlightId = baggage.flight_id;
+            Weight = baggage.weight;
+            Status = baggage.status;
+
+            // Инициализируем список статусов багажа
+            BaggageStatuses = new List<string> { "Registered", "Loading", "In Transit", "Arrived", "Claimed", "Lost" };
 
             // Инициализация команд
             SaveCommand = new RelayCommand(Save, CanSave);
@@ -50,12 +54,12 @@ namespace Rubidium
 
         public int PassengerNumber
         {
-            get { return _passenger_number; }
+            get { return _passengerNumber; }
             set
             {
-                if (_passenger_number != value)
+                if (_passengerNumber != value)
                 {
-                    _passenger_number = value;
+                    _passengerNumber = value;
                     OnPropertyChanged(nameof(PassengerNumber));
                 }
             }
@@ -63,12 +67,12 @@ namespace Rubidium
 
         public string PassengerName
         {
-            get { return _passenger_name; }
+            get { return _passengerName; }
             set
             {
-                if (_passenger_name != value)
+                if (_passengerName != value)
                 {
-                    _passenger_name = value;
+                    _passengerName = value;
                     OnPropertyChanged(nameof(PassengerName));
                 }
             }
@@ -76,12 +80,12 @@ namespace Rubidium
 
         public string PassengerSername
         {
-            get { return _passenger_sername; }
+            get { return _passengerSername; }
             set
             {
-                if (_passenger_sername != value)
+                if (_passengerSername != value)
                 {
-                    _passenger_sername = value;
+                    _passengerSername = value;
                     OnPropertyChanged(nameof(PassengerSername));
                 }
             }
@@ -99,6 +103,7 @@ namespace Rubidium
                 }
             }
         }
+
         public decimal Weight
         {
             get { return _weight; }
@@ -111,6 +116,7 @@ namespace Rubidium
                 }
             }
         }
+
         public string Status
         {
             get { return _status; }
@@ -123,28 +129,35 @@ namespace Rubidium
                 }
             }
         }
+
+        public List<string> BaggageStatuses
+        {
+            get { return _baggageStatuses; }
+            set
+            {
+                _baggageStatuses = value;
+                OnPropertyChanged(nameof(BaggageStatuses));
+            }
+        }
+
         // Команды
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
 
         private bool CanSave(object parameter)
         {
-            // Валидация данных
-            return !string.IsNullOrWhiteSpace(PassengerName)
-                && !string.IsNullOrWhiteSpace(PassengerSername)
-                && !string.IsNullOrWhiteSpace(Status)
-                && PassengerNumber != 0
-                && FlightId != 0 && Weight != 0;
+            // Валидация данных - проверяем, что выбран статус
+            return !string.IsNullOrWhiteSpace(Status);
         }
 
         private void Save(object parameter)
         {
             try
             {
-                // Вызываем метод сервиса для обновления рейса с правильными параметрами
+                // Вызываем метод сервиса для обновления статуса багажа
                 _baggageService.UpdateBaggageStatus(
                     _baggageId,
-                    _status
+                    Status
                 );
 
                 // Закрываем окно после успешного сохранения

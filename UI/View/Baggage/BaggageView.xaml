@@ -5,161 +5,173 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="ActionButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                             VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="Foreground" Value="#11111B"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#B4BEFE" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE">
-            <Button Content="Добавить" Command="{Binding AddBaggageCommand}" Margin="5" Width="80" Background="#FF2D3250" Foreground="#FFE5E5DF">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="buttonBorder" CornerRadius="0"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Height="{TemplateBinding Height}"
-                            Width="{TemplateBinding Width}" >
-                        <ContentControl Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Content="Удалить" Command="{Binding DelBaggageCommand}" Margin="5" Width="80" Background="#FF2D3250" Foreground="#FFE5E5DF">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="buttonBorder" CornerRadius="0"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Height="{TemplateBinding Height}"
-                            Width="{TemplateBinding Width}" >
-                        <ContentControl Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Content="Обновить" Command="{Binding UpdBaggageCommand}" Margin="5" Width="80" Background="#FF2D3250" Foreground="#FFE5E5DF">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="buttonBorder" CornerRadius="0"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Height="{TemplateBinding Height}"
-                            Width="{TemplateBinding Width}" >
-                        <ContentControl Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="buttonBorder" Property="Background" Value="#f9b17a"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Separator Width="20" RenderTransformOrigin="1.918,0.58"/>
-            <TextBlock Text="Система контроля багажей" FontWeight="Bold" FontSize="16" Height="25" Width="223" VerticalAlignment="Center"/>
-        </StackPanel>
+        <Grid DockPanel.Dock="Top" Height="60" Background="#11111B">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0">
+                <Button Content="Добавить" Command="{Binding AddBaggageCommand}" Style="{StaticResource ActionButton}" Margin="0,0,10,0"/>
+                <Button Content="Удалить" Command="{Binding DelBaggageCommand}" Style="{StaticResource ActionButton}" Margin="0,0,10,0"/>
+                <Button Content="Изменить" Command="{Binding UpdBaggageCommand}" Style="{StaticResource ActionButton}" Margin="0,0,25,0"/>
+
+                <Separator Width="1" Height="24" Background="#313244" Margin="0,0,25,0"/>
+
+                <TextBlock Text="Система контроля багажей" 
+                           FontWeight="SemiBold" 
+                           FontSize="18" 
+                           Foreground="#F5E0DC" 
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid DockPanel.Dock="Top" Height="50" Background="#1E1E2E">
+            <StackPanel Orientation="Horizontal" Margin="15,0" VerticalAlignment="Center">
+                <Border Background="#313244" CornerRadius="6" Width="250" Height="32">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="🔍" Grid.Column="0" Margin="12,0,0,0" VerticalAlignment="Center" Foreground="#CDD6F4"/>
+                        <TextBox Grid.Column="1" Background="Transparent" BorderThickness="0" Margin="5,0,0,0" 
+                                 VerticalAlignment="Center" Foreground="#CDD6F4" 
+                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </Border>
+                <ComboBox Width="120" Height="32" Margin="15,0,0,0" Background="#313244" Foreground="#313244" 
+                          BorderThickness="0" SelectedIndex="0">
+                    <ComboBoxItem Content="Все статусы"/>
+                    <ComboBoxItem Content="Проверено"/>
+                    <ComboBoxItem Content="Не проверено"/>
+                    <ComboBoxItem Content="Потеряно"/>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
         <DataGrid ItemsSource="{Binding Baggage}"
-                  SelectedItem="{Binding SelectedBaggage, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedBaggage, Mode=TwoWay}" 
                   AutoGenerateColumns="False"
                   HeadersVisibility="Column"
-                  Background="White"
-                  BorderBrush="#E0E0E0"
-                  BorderThickness="1"
-                  RowBackground="White"
-                  AlternatingRowBackground="#FAFAFA"
+                  Background="#1E1E2E"
+                  BorderBrush="#313244"
+                  BorderThickness="0"
+                  RowBackground="#1E1E2E"
+                  AlternatingRowBackground="#181825"
                   GridLinesVisibility="None"
-                  FontSize="14"
+                  FontSize="13"
                   ColumnWidth="*"
                   CanUserResizeRows="False"
                   CanUserAddRows="False"
                   VerticalGridLinesBrush="Transparent"
-                  HorizontalGridLinesBrush="Transparent">   
+                  HorizontalGridLinesBrush="Transparent"
+                  Margin="15">
 
-
-            <!-- Эффекты -->
-            <DataGrid.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="3" Color="#33000000"/>
-            </DataGrid.Effect>
-
-            <!-- Стиль заголовков -->
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="#FF2D3250"/>
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="#11111B"/>
+                    <Setter Property="Foreground" Value="#F5E0DC"/>
                     <Setter Property="FontWeight" Value="SemiBold"/>
-                    <Setter Property="Padding" Value="12,8"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
-                    <Setter Property="BorderBrush" Value="#263238"/>
+                    <Setter Property="Padding" Value="12,10"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Setter Property="BorderBrush" Value="#313244"/>
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
-            <!-- Стиль строк -->
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
-                    <Setter Property="Height" Value="42"/>
+                    <Setter Property="Height" Value="48"/>
+                    <Setter Property="Foreground" Value="#CDD6F4"/>
                     <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                    <Setter Property="BorderBrush" Value="#EEEEEE"/>
+                    <Setter Property="BorderBrush" Value="#313244"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#F5F5F5"/>
+                            <Setter Property="Background" Value="#313244"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#E3F2FD"/>
-                            <Setter Property="BorderBrush" Value="#BBDEFB"/>
+                            <Setter Property="Background" Value="#45475A"/>
+                            <Setter Property="BorderBrush" Value="#CBA6F7"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>
 
-            <!-- Колонки -->
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Padding" Value="12,0"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер багажа" 
-                          Binding="{Binding passenger_number}" 
-                          Width="1.5*"/>
+                                  Binding="{Binding passenger_number}" 
+                                  Width="1.2*"/>
 
                 <DataGridTextColumn Header="Имя пассажира" 
-                          Binding="{Binding passenger_name}" 
-                          Width="2*"/>
+                                  Binding="{Binding passenger_name}" 
+                                  Width="1.5*"/>
 
                 <DataGridTextColumn Header="Фамилия пассажира" 
-                          Binding="{Binding passenger_sername}" 
-                          Width="1.2*"/>
-                
+                                  Binding="{Binding passenger_sername}" 
+                                  Width="1.5*"/>
+
                 <DataGridTextColumn Header="Номер рейса" 
-                          Binding="{Binding flight_id}" 
-                          Width="1.2*"/>
-                
+                                  Binding="{Binding flight_id}" 
+                                  Width="1.2*"/>
+
                 <DataGridTextColumn Header="Вес" 
-                          Binding="{Binding weight}" 
-                          Width="1.2*"/>
+                                  Binding="{Binding weight}" 
+                                  Width="1*"/>
+
                 <DataGridTemplateColumn Header="Статус" Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Border CornerRadius="4" 
-                           Padding="6,2">
+                                  Padding="8,3"
+                                  Background="{Binding status}">
                                 <TextBlock Text="{Binding status}" 
-                                  HorizontalAlignment="Center"
-                                  Foreground="White"
-                                  FontWeight="SemiBold"/>
+                                         HorizontalAlignment="Center"
+                                         Foreground="White"
+                                         FontWeight="Medium"/>
                             </Border>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
