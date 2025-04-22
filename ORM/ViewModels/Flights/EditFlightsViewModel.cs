@@ -34,7 +34,7 @@ namespace Rubidium
             _originalFlight = flight;
 
             // Заполняем свойства данными из переданного рейса
-            Id = flight.Id;
+            _flightId = flight.Id;
             FlightNumber = flight.flight_number;
             Destination = flight.destination;
             DepartureTime = flight.departure_time;
@@ -47,18 +47,7 @@ namespace Rubidium
         }
 
         // Свойства для привязки в UI
-        public string Id
-        {
-            get { return _flightId; }
-            set
-            {
-                if (_flightId != value)
-                {
-                    _flightId = value;
-                    OnPropertyChanged(nameof(Id));
-                }
-            }
-        }
+        
         public string FlightNumber
         {
             get { return _flightNumber; }
@@ -151,7 +140,7 @@ namespace Rubidium
 
                 // Вызываем метод сервиса для обновления рейса с правильными параметрами
                 _flightService.UpdateFlight(
-                    _flightRepo.GetById(id),
+                    _flightId,
                     FlightNumber,
                     Destination,
                     DepartureTime.Value,
@@ -180,33 +169,4 @@ namespace Rubidium
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
-    // Простая реализация ICommand для использования в командах ViewModel
-    //public class RelayCommand : ICommand
-    //{
-    //    private readonly Action<object> _execute;
-    //    private readonly Predicate<object> _canExecute;
-
-    //    public event EventHandler CanExecuteChanged
-    //    {
-    //        add { CommandManager.RequerySuggested += value; }
-    //        remove { CommandManager.RequerySuggested -= value; }
-    //    }
-
-    //    public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
-    //    {
-    //        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-    //        _canExecute = canExecute;
-    //    }
-
-    //    public bool CanExecute(object parameter)
-    //    {
-    //        return _canExecute == null || _canExecute(parameter);
-    //    }
-
-    //    public void Execute(object parameter)
-    //    {
-    //        _execute(parameter);
-    //    }
-    //}
 }
