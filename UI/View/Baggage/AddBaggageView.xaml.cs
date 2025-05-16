@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 namespace Rubidium
 {
     /// <summary>
+<<<<<<< HEAD
+<<<<<<<< HEAD:UI/View/Baggage/AddBaggageView.xaml.cs
+=======
+>>>>>>> origin/Develop
     /// Interaction logic for AddBaggageView.xaml
     /// </summary>
     public partial class AddBaggageView : Window
@@ -23,5 +27,26 @@ namespace Rubidium
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
+========
+    /// Interaction logic for AddFlightsView.xaml
+    /// </summary>
+    public partial class AddFlightsView : Window
+    {
+        public AddFlightsView()
+        {
+            InitializeComponent();
+        }
+
+=======
+>>>>>>> origin/Develop
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+<<<<<<< HEAD
+>>>>>>>> origin/Develop:UI/View/Flights/AddFlightsView.xaml.cs
+=======
+>>>>>>> origin/Develop
     }
 }

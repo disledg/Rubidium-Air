@@ -17,7 +17,6 @@ namespace Rubidium
         private readonly BaggageService _baggageService;
         private readonly EmployeeService _employeeService;
 
-        // Команды навигации
         public ICommand NavigateToFlightsCommand { get; }
         public ICommand NavigateToEmployeesCommand { get; }
         public ICommand NavigateToBaggageCommand { get; }
@@ -28,17 +27,22 @@ namespace Rubidium
             _flightService = flightService;
             _employeeService = employeeService;
             _baggageService = baggageService;
+<<<<<<< HEAD
             // Регистрация страниц
+=======
+>>>>>>> origin/Develop
             _navigation.RegisterPage("Flights", () => new FlightsViewModel(flightService));
             _navigation.RegisterPage("Employees", () => new EmployeesViewModel(employeeService));
             _navigation.RegisterPage("Baggage", () => new BaggageViewModel(baggageService));
 
+<<<<<<< HEAD
             // Инициализация команд
+=======
+>>>>>>> origin/Develop
             NavigateToFlightsCommand = new RelayCommand(_ => NavigateTo("Flights"));
             NavigateToEmployeesCommand = new RelayCommand(_ => NavigateTo("Employees"));
             NavigateToBaggageCommand = new RelayCommand(_ => NavigateTo("Baggage"));
 
-            // Загрузка начальной страницы
             NavigateTo("Flights");
         }
 

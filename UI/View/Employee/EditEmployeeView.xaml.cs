@@ -19,9 +19,30 @@ namespace Rubidium
     /// </summary>
     public partial class EditEmployeeView : Window
     {
+<<<<<<< HEAD
         public EditEmployeeView()
         {
             InitializeComponent();
         }
     }
 }
+=======
+        public EditEmployeeView(Employee employee, EmployeeService employeeService)
+        {
+            InitializeComponent();
+            DataContext = new EditEmployeeViewModel(employee, employeeService, this);
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
+    }
+}
+>>>>>>> origin/Develop

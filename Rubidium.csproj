@@ -176,6 +176,10 @@
     <Compile Include="Flight.cs">
       <DependentUpon>AirportDB.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="UI\Converters\EditModeToTitleConverter.cs" />
+>>>>>>> origin/Develop
     <Compile Include="UI\MainWindows\login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
     </Compile>

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 namespace Rubidium
 {
     /// <summary>
+<<<<<<< HEAD
     /// Interaction logic for EditBaggageView.xaml
     /// </summary>
     public partial class EditFlightView : Window
@@ -25,3 +26,27 @@ namespace Rubidium
         }
     }
 }
+=======
+    /// Логика взаимодействия для EditFlightView.xaml
+    /// </summary>
+    public partial class EditFlightView : Window
+    {
+        public EditFlightView(Flight flight, FlightService flightService)
+        {
+            InitializeComponent();
+            DataContext = new EditFlightsViewModel(flight, flightService, this);
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
+    }
+}
+>>>>>>> origin/Develop

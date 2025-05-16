@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:Rubidium"
         mc:Ignorable="d"
         Title="Rubidium AIR" Height="650" Width="1000"
+<<<<<<< HEAD
         Background="#676f9d" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
+=======
+        Background="#1E1E2E" ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None">
+>>>>>>> origin/Develop
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:FlightsViewModel}">
             <local:FlightsView/>
@@ -29,11 +33,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+<<<<<<< HEAD
             <RowDefinition Height="20"/>
+=======
+            <RowDefinition Height="60"/>
+>>>>>>> origin/Develop
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
+<<<<<<< HEAD
         <Rectangle Fill="#424769" RadiusX="0" RadiusY="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="-16,0,0,0"/>
 
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employees" 
@@ -65,11 +74,50 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Bd" Property="Background" Value="#f9b17a"/>
                             <Setter TargetName="Pt" Property="Stroke" Value="#2d3250"/>
+=======
+        <Rectangle Fill="#181825" RadiusX="0" RadiusY="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="-16,0,0,0"/>
+
+        <Rectangle Fill="#11111B" RadiusX="0" RadiusY="0" Grid.ColumnSpan="6" Height="60" VerticalAlignment="Top"/>
+
+        <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Employees" 
+                              Command="{Binding NavigateToEmployeesCommand}" 
+                              Height="50" Margin="0,40,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+        <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Flights" 
+                              Command="{Binding NavigateToFlightsCommand}" 
+                              Height="50" Margin="0,95,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+        <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Baggages" 
+                              Command="{Binding NavigateToBaggageCommand}" 
+                              Height="50" Margin="0,150,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+        <ContentControl Grid.Column="3" Grid.Row="1" Content="{Binding CurrentPage}" Grid.ColumnSpan="3" Margin="10,20,10,0" Grid.RowSpan="2"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <TextBlock Text="R" FontSize="32" FontWeight="Bold" Foreground="#CBA6F7" Margin="0,0,0,0"/>
+            <TextBlock Text="ubidium AIR" FontSize="24" FontWeight="SemiBold" Foreground="#F5E0DC" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Button Height="30" Width="30" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,15,0" Click="Close_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Bd" Background="Transparent" CornerRadius="15">
+                        <Path x:Name="Pt" Data="M0,0 M0.2,0.2 L 0.8,0.8 M0.2,0.8 L0.8,0.2 M1,1"
+                             Stretch="Uniform" Stroke="#F5E0DC" StrokeThickness="2"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="#F38BA8"/>
+                            <Setter TargetName="Pt" Property="Stroke" Value="#11111B"/>
+>>>>>>> origin/Develop
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Button.Template>
         </Button>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Develop
     </Grid>
 </Window>

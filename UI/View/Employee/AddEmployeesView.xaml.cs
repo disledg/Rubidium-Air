@@ -23,5 +23,12 @@ namespace Rubidium
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
+=======
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+>>>>>>> origin/Develop
     }
 }

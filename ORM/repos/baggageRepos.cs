@@ -27,6 +27,10 @@ namespace Rubidium
                 throw new ArgumentException("ФИО и номер пасспорта пассажира обязательно");
 
             base.Add(baggage);
+<<<<<<< HEAD
+=======
+            base.Save();
+>>>>>>> origin/Develop
         }
 
         public override void Update(Baggage updatedBaggage)

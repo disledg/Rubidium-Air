@@ -27,7 +27,10 @@ namespace Rubidium
             CancelCommand = new RelayCommand(Cancel);
         }
 
+<<<<<<< HEAD
         // Свойства для привязки (аналогично предыдущему примеру)
+=======
+>>>>>>> origin/Develop
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Position { get; set; }
@@ -38,15 +41,35 @@ namespace Rubidium
 
         private void SaveEmployee(object parameter)
         {
+<<<<<<< HEAD
             // Используем сервис вместо прямого доступа к репозиторию
             _employeeService.AddEmployee(
+=======
+            try
+            {
+                _employeeService.AddEmployee(
+>>>>>>> origin/Develop
                 FirstName,
                 LastName,
                 Position,
                 ContactInfo);
 
+<<<<<<< HEAD
             _parentViewModel.LoadEmployees(); // Обновляем список
             _window.Close();
+=======
+                _parentViewModel.LoadEmployees();
+                _window.Close();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+>>>>>>> origin/Develop
         }
 
         private void Cancel(object parameter)

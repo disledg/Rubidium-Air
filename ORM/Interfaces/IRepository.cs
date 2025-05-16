@@ -53,6 +53,10 @@ namespace Rubidium
             var entity = _dbSet.Find(id);
             if (entity != null)
                 _dbSet.Remove(entity);
+<<<<<<< HEAD
+=======
+            Save();
+>>>>>>> origin/Develop
         }
 
         public virtual void Save() => _context.SaveChanges();

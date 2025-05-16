@@ -70,7 +70,10 @@ namespace Rubidium
                     DataContext = mainContext
                 };
                 mainWindow.Show();
+<<<<<<< HEAD
                 // Закрываем текущее окно
+=======
+>>>>>>> origin/Develop
                 Application.Current.MainWindow?.Close();
                 Application.Current.MainWindow = mainWindow;
             }
