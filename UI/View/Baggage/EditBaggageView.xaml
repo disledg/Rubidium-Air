@@ -1,0 +1,217 @@
+﻿<Window x:Class="Rubidium.EditBaggageView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rubidium"
+        mc:Ignorable="d"
+        Title="Изменение багажа" 
+        Background="#1E1E2E"
+        Height="600" Width="420"
+        WindowStyle="None" 
+        ResizeMode="NoResize" 
+        AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                CornerRadius="6" Padding="2">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" 
+                                         HorizontalScrollBarVisibility="Hidden" 
+                                         VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernComboBox" TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                CornerRadius="6" BorderThickness="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ToggleButton x:Name="PART_ToggleButton" Grid.ColumnSpan="2"
+                                             IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                             Focusable="False" Background="Transparent"
+                                             BorderThickness="0" ClickMode="Press">
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                            <Border Background="Transparent"/>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
+                                <ContentPresenter x:Name="PART_ContentPresenter" 
+                                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                               ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                               Content="{TemplateBinding SelectionBoxItem}"
+                                               HorizontalAlignment="Left"
+                                               Margin="12,0,0,0"
+                                               VerticalAlignment="Center"/>
+                                <Path x:Name="arrow" Grid.Column="1" Fill="#CDD6F4" 
+                                    Data="M0,0 L4,4 8,0 Z" HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" 
+                                     Grid.ColumnSpan="2" IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                     Placement="Bottom" PopupAnimation="Fade" Focusable="False">
+                                    <Border x:Name="dropDownBorder" Background="#313244" 
+                                          BorderBrush="#313244" BorderThickness="1" CornerRadius="6" Margin="0,4,0,0">
+                                        <ScrollViewer x:Name="DropDownScrollViewer" MaxHeight="200">
+                                            <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#CBA6F7"/>
+            <Setter Property="Foreground" Value="#11111B"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                             VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F5C2E7" TargetName="border"/>
+                                <Setter Property="Effect" TargetName="border">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#CBA6F7" Opacity="0.6"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#B4BEFE" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CancelButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="10" BorderThickness="1" BorderBrush="#313244">
+        <Grid>
+            <Grid Height="50" VerticalAlignment="Top" Background="#11111B">
+                <TextBlock Text="Изменение багажа" FontSize="18" FontWeight="SemiBold" Foreground="#F5E0DC" 
+                       VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                <Button x:Name="CloseButton" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,0,10,0"
+                    Background="Transparent" BorderThickness="0" Click="Close_Click">
+                    <Path Data="M0,0 L10,10 M0,10 L10,0" Stroke="#F5E0DC" StrokeThickness="1.5" Width="10" Height="10"/>
+                </Button>
+            </Grid>
+
+            <Grid Margin="30,60,30,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Номер пассажира:" Foreground="#CDD6F4" Grid.Row="0" Margin="0,0,0,4"/>
+                <TextBox Text="{Binding PassengerNumber}" Grid.Row="1" Margin="0,0,0,15" 
+                         Style="{StaticResource ModernTextBox}" IsReadOnly="True"/>
+
+                <TextBlock Text="Имя пассажира:" Foreground="#CDD6F4" Grid.Row="2" Margin="0,0,0,4"/>
+                <TextBox Text="{Binding PassengerName}" Grid.Row="3" Margin="0,0,0,15" 
+                         Style="{StaticResource ModernTextBox}" IsReadOnly="True"/>
+
+                <TextBlock Text="Фамилия пассажира:" Foreground="#CDD6F4" Grid.Row="4" Margin="0,0,0,4"/>
+                <TextBox Text="{Binding PassengerSername}" Grid.Row="5" Margin="0,0,0,15" 
+                         Style="{StaticResource ModernTextBox}" IsReadOnly="True"/>
+
+                <TextBlock Text="ID рейса:" Foreground="#CDD6F4" Grid.Row="6" Margin="0,0,0,4"/>
+                <TextBox Text="{Binding FlightId}" Grid.Row="7" Margin="0,0,0,15" 
+                         Style="{StaticResource ModernTextBox}" IsReadOnly="True"/>
+
+                <TextBlock Text="Вес багажа:" Foreground="#CDD6F4" Grid.Row="8" Margin="0,0,0,4"/>
+                <TextBox Text="{Binding Weight}" Grid.Row="9" Margin="0,0,0,15" 
+                         Style="{StaticResource ModernTextBox}" IsReadOnly="True"/>
+
+                <TextBlock Text="Статус:" Foreground="#CDD6F4" Grid.Row="10" Margin="0,0,0,4"/>
+                <ComboBox Grid.Row="11" Margin="0,0,0,25" 
+                         Style="{StaticResource ModernComboBox}"
+                         ItemsSource="{Binding BaggageStatuses}"
+                         SelectedItem="{Binding Status}">
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="12">
+                    <Button Content="Отмена" Command="{Binding CancelCommand}" 
+                        Margin="0,0,10,0" 
+                        Style="{StaticResource CancelButton}"
+                        Width="90"/>
+                    <Button Content="Сохранить" Command="{Binding SaveCommand}" 
+                        Width="90"
+                        Style="{StaticResource ModernButton}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
