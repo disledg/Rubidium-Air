@@ -26,12 +26,24 @@ namespace Rubidium
             var employeeService = new EmployeeService(new EmployeeRepo(dbContext), new FlightRepo(dbContext));
             var baggageService = new BaggageService(new BaggageRepo(dbContext),new FlightRepo(dbContext));
             var authService = new AuthService(new UserRepository(dbContext, new PasswordHasher()),new  PasswordHasher());
+            var aircraftService = new AircraftService(new AircraftRepo(dbContext));
+            var aircraftMetricsService = new AircraftMetricsService(new AircraftMetricsRepo(dbContext), new AircraftRepo(dbContext));
+
             // Регистрируем страницы
             Navigator.RegisterPage("Flights", () => new FlightsViewModel(flightService));
             Navigator.RegisterPage("Employees", () => new EmployeesViewModel(employeeService));
             Navigator.RegisterPage("Baggage", () => new BaggageViewModel(baggageService));
+            Navigator.RegisterPage("Aircraft", () => new AircraftViewModel(aircraftService));
+            Navigator.RegisterPage("AircraftMetrics", () => new AircraftMetricsViewModel(aircraftMetricsService, aircraftService));
 
-            var AuthVM = new AuthViewModel(authService, employeeService, flightService, baggageService, Navigator);
+            var AuthVM = new AuthViewModel(
+                authService, 
+                employeeService, 
+                flightService, 
+                baggageService,
+                aircraftService,
+                aircraftMetricsService,
+                Navigator);
 
             var login = new login
             {
