@@ -146,12 +146,24 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="UI\MainWindows\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Aircraft.cs">
+      <DependentUpon>AirportDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AircraftMetric.cs">
+      <DependentUpon>AirportDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="AirportDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -291,6 +303,60 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="ORM\Interfaces\IAircraftRepo.cs" />
+    <Compile Include="ORM\repos\AircraftRepo.cs" />
+    <Compile Include="ORM\services\AircraftService.cs" />
+    <Compile Include="ORM\ViewModels\Aircraft\AircraftViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Aircraft\AddAircraftViewModel.cs" />
+    <Compile Include="ORM\ViewModels\Aircraft\EditAircraftViewModel.cs" />
+    <Compile Include="UI\View\Aircraft\AircraftView.xaml.cs">
+      <DependentUpon>AircraftView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\Aircraft\AddAircraftView.xaml.cs">
+      <DependentUpon>AddAircraftView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\Aircraft\EditAircraftView.xaml.cs">
+      <DependentUpon>EditAircraftView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Interfaces\IAircraftMetricsRepo.cs" />
+    <Compile Include="ORM\repos\AircraftMetricsRepo.cs" />
+    <Compile Include="ORM\services\AircraftMetricsService.cs" />
+    <Compile Include="ORM\ViewModels\AircraftMetrics\AircraftMetricsViewModel.cs" />
+    <Compile Include="ORM\ViewModels\AircraftMetrics\AddAircraftMetricsViewModel.cs" />
+    <Compile Include="ORM\ViewModels\AircraftMetrics\EditAircraftMetricsViewModel.cs" />
+    <Compile Include="UI\View\AircraftMetrics\AircraftMetricsView.xaml.cs">
+      <DependentUpon>AircraftMetricsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\AircraftMetrics\AddAircraftMetricsView.xaml.cs">
+      <DependentUpon>AddAircraftMetricsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\View\AircraftMetrics\EditAircraftMetricsView.xaml.cs">
+      <DependentUpon>EditAircraftMetricsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="UI\View\Aircraft\AircraftView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\Aircraft\AddAircraftView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\Aircraft\EditAircraftView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\AircraftMetrics\AircraftMetricsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\AircraftMetrics\AddAircraftMetricsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\View\AircraftMetrics\EditAircraftMetricsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ORM\repos\baggageRepos.cs" />
@@ -349,6 +415,7 @@
       <LastGenOutput>AirportDB.cs</LastGenOutput>
     </Content>
     <Content Include="Database\script.sql" />
+    <Content Include="Database\CreateDatabase.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
