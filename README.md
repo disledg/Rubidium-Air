@@ -26,7 +26,7 @@ git checkout Aircraft-module
 ### 3. Настройка строки подключения
 1. Откройте файл `App.config`
 2. Найдите строку подключения `AirportDBEntities1`
-3. При необходимости измените `data source=(localdb)\MSSQLLocalDB` на имя вашего сервера
+3. При необходимости измените `data source=` на имя вашего сервера
 
 ### 4. Установка пакетов NuGet
 В Package Manager Console выполните:
@@ -39,8 +39,8 @@ Update-Package -reinstall
 2. Нажмите F5 для сборки и запуска проекта
 
 ## Первый вход
-- Логин: admin
-- Пароль: admin
+- Логин: root
+- Пароль: toor
 
 ## Основные функции
 
