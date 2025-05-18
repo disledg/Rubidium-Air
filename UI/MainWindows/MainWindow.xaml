@@ -17,6 +17,12 @@
         <DataTemplate DataType="{x:Type local:BaggageViewModel}">
             <local:BaggageView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local:AircraftViewModel}">
+            <local:AircraftView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:AircraftMetricsViewModel}">
+            <local:AircraftMetricsView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -49,6 +55,14 @@
         <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Baggages" 
                               Command="{Binding NavigateToBaggageCommand}" 
                               Height="50" Margin="0,150,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+        <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Aircraft" 
+                              Command="{Binding NavigateToAircraftCommand}" 
+                              Height="50" Margin="0,205,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+        <local:sideCategoryButton Grid.Column="1" Grid.Row="1" Content="Aircraft Metrics" 
+                              Command="{Binding NavigateToAircraftMetricsCommand}" 
+                              Height="50" Margin="0,260,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
         <ContentControl Grid.Column="3" Grid.Row="1" Content="{Binding CurrentPage}" Grid.ColumnSpan="3" Margin="10,20,10,0" Grid.RowSpan="2"/>
 
