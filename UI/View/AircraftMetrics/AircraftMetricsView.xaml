@@ -1,0 +1,292 @@
+ <UserControl x:Class="Rubidium.AircraftMetricsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="ActionButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                             VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#CBA6F7" TargetName="border"/>
+                                <Setter Property="Foreground" Value="#11111B"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#B4BEFE" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernComboBox" TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <Border x:Name="border" 
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter IsHitTestVisible="False" 
+                                                    Content="{TemplateBinding SelectionBoxItem}"
+                                                    ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                    ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                    Margin="10,0,0,0"
+                                                    VerticalAlignment="Center"/>
+                                    <Path Grid.Column="1" 
+                                          Data="M0,0 L4,4 8,0" 
+                                          Fill="#CDD6F4"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                            <Popup x:Name="PART_Popup"
+                                   AllowsTransparency="True"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom">
+                                <Border Background="#313244"
+                                        BorderBrush="#CBA6F7"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        Margin="0,2,0,0">
+                                    <ScrollViewer SnapsToDevicePixels="True" 
+                                                HorizontalScrollBarVisibility="Auto" 
+                                                VerticalScrollBarVisibility="Auto">
+                                        <StackPanel IsItemsHost="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#45475A" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsDropDownOpen" Value="True">
+                                <Setter Property="Background" Value="#45475A" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Resources>
+                <Style TargetType="{x:Type ComboBoxItem}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="#CDD6F4"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                                <Border x:Name="border"
+                                        Background="{TemplateBinding Background}"
+                                        BorderThickness="0"
+                                        Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#45475A"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#CBA6F7"/>
+                                        <Setter Property="Foreground" Value="#11111B"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="ModernDatePicker" TargetType="{x:Type DatePicker}">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#CDD6F4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DatePicker}">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <DatePickerTextBox x:Name="PART_TextBox"
+                                                  Grid.Column="0"
+                                                  Foreground="{TemplateBinding Foreground}"
+                                                  Background="Transparent"
+                                                  BorderThickness="0"
+                                                  Padding="10,0,0,0"
+                                                  VerticalContentAlignment="Center"/>
+                                <Button x:Name="PART_Button"
+                                        Grid.Column="1"
+                                        Width="30"
+                                        Background="Transparent"
+                                        BorderThickness="0">
+                                    <Path Data="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"
+                                          Fill="#CDD6F4"
+                                          Width="16"
+                                          Height="16"/>
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#45475A" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Top" Height="60" Background="#11111B">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0">
+                <ComboBox ItemsSource="{Binding Aircraft}"
+                         SelectedItem="{Binding SelectedAircraft}"
+                         DisplayMemberPath="registration_number"
+                         Width="150"
+                         Style="{StaticResource ModernComboBox}"
+                         Margin="0,0,10,0"/>
+
+                <DatePicker SelectedDate="{Binding StartDate}"
+                          Style="{StaticResource ModernDatePicker}"
+                          Width="120"
+                          Margin="0,0,10,0"/>
+
+                <DatePicker SelectedDate="{Binding EndDate}"
+                          Style="{StaticResource ModernDatePicker}"
+                          Width="120"
+                          Margin="0,0,10,0"/>
+
+                <Button Content="Добавить" Command="{Binding AddMetricsCommand}" Style="{StaticResource ActionButton}" Margin="0,0,10,0"/>
+                <Button Content="Удалить" Command="{Binding DelMetricsCommand}" Style="{StaticResource ActionButton}" Margin="0,0,10,0"/>
+                <Button Content="Изменить" Command="{Binding UpdMetricsCommand}" Style="{StaticResource ActionButton}" Margin="0,0,25,0"/>
+
+                <Separator Width="1" Height="24" Background="#313244" Margin="0,0,25,0"/>
+
+                
+            </StackPanel>
+            <TextBlock Text="Показатели воздушного судна" 
+           FontWeight="SemiBold" 
+           FontSize="18" 
+           Foreground="#F5E0DC" 
+           VerticalAlignment="Top" Margin="15,-25,-15,0"/>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <lvc:CartesianChart Grid.Row="0" Series="{Binding FuelConsumptionSeries}" LegendLocation="Right" Margin="15">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Дата" Labels="{Binding Labels}"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Расход топлива"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="1" Series="{Binding LoadSeries}" LegendLocation="Right" Margin="15">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Дата" Labels="{Binding Labels}"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Загрузка"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="2" Series="{Binding ResourcesSeries}" LegendLocation="Right" Margin="15">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Дата" Labels="{Binding Labels}"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Уровень ресурсов"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </Grid>
+
+            <DataGrid Grid.Column="1"
+                      ItemsSource="{Binding Metrics}"
+                      SelectedItem="{Binding SelectedMetrics}"
+                      AutoGenerateColumns="False"
+                      Background="#1E1E2E"
+                      Foreground="#CDD6F4"
+                      GridLinesVisibility="None"
+                      BorderThickness="0"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      IsReadOnly="True"
+                      Margin="0,15,15,15">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#313244"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#313244"/>
+                </DataGrid.Resources>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#313244"/>
+                        <Setter Property="Foreground" Value="#CDD6F4"/>
+                        <Setter Property="Padding" Value="10,5"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Дата" Binding="{Binding date, StringFormat=\{0:dd.MM.yy\}}" Width="*"/>
+                    <DataGridTextColumn Header="Топливо" Binding="{Binding fuel_consumption}" Width="*"/>
+                    <DataGridTextColumn Header="Пассажиры" Binding="{Binding passenger_load}" Width="*"/>
+                    <DataGridTextColumn Header="Груз" Binding="{Binding cargo_load}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>
