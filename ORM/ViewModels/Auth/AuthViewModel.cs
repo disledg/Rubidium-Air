@@ -18,8 +18,9 @@ namespace Rubidium
         private readonly EmployeeService _employeeService;
         private readonly FlightService _flightService;
         private readonly BaggageService _baggageService;
+        private readonly AircraftService _aircraftService;
+        private readonly AircraftMetricsService _aircraftMetricsService;
         private readonly NavigationService _navigator;
-
 
         private string _username;
         public string Username
@@ -34,17 +35,23 @@ namespace Rubidium
         public string Password { get; set; }
         public ICommand AuntificationCommand { get; }
         public AuthViewModel(AuthService authService,
-            EmployeeService emploeeService,
+            EmployeeService employeeService,
             FlightService flightService,
             BaggageService baggageService,
+            AircraftService aircraftService,
+            AircraftMetricsService aircraftMetricsService,
             NavigationService navigator)
         {
             _authService = authService;
             AuntificationCommand = new RelayCommand(_ => Auth("Product"));
             _navigator = navigator;
-            _employeeService = emploeeService;
+            _employeeService = employeeService;
             _flightService = flightService;
             _baggageService = baggageService;
+            _aircraftService = aircraftService;
+            _aircraftMetricsService = aircraftMetricsService;
+            _navigator = navigator;
+
             _authService.Register("root", "toor");
         }
         private void Auth(object parameter)
@@ -63,7 +70,7 @@ namespace Rubidium
             var user = _authService.Login(Username, Password);
             if (user != null)
             {
-                var mainContext = new MainViewModel(_navigator, _flightService, _employeeService, _baggageService);
+                var mainContext = new MainViewModel(_navigator, _flightService, _employeeService, _baggageService, _aircraftService, _aircraftMetricsService);
 
                 var mainWindow = new MainWindow
                 {
