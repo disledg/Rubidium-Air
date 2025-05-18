@@ -29,5 +29,7 @@ namespace Rubidium
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Flight> Flights { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Aircraft> Aircraft { get; set; }
+        public virtual DbSet<AircraftMetric> AircraftMetrics { get; set; }
     }
 }

@@ -5,6 +5,31 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AirportDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aircraft">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="registration_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="model" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="year_of_manufacture" Type="int" Nullable="false" />
+          <Property Name="passenger_capacity" Type="int" Nullable="false" />
+          <Property Name="cargo_capacity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AircraftMetrics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aircraft_id" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="fuel_consumption" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="passenger_load" Type="int" Nullable="false" />
+          <Property Name="cargo_load" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="water_level" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="oil_level" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="technical_condition" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="Baggage">
           <Key>
             <PropertyRef Name="Id" />
@@ -54,6 +79,18 @@
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Association Name="FK__AircraftM__aircr__05D8E0BE">
+          <End Role="Aircraft" Type="Self.Aircraft" Multiplicity="1" />
+          <End Role="AircraftMetrics" Type="Self.AircraftMetrics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aircraft">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AircraftMetrics">
+              <PropertyRef Name="aircraft_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Crew__employee_i__5DCAEF64">
           <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="Crew" Type="Self.Crew" Multiplicity="*" />
@@ -91,11 +128,17 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AirportDBModelStoreContainer">
+          <EntitySet Name="Aircraft" EntityType="Self.Aircraft" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AircraftMetrics" EntityType="Self.AircraftMetrics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Baggage" EntityType="Self.Baggage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Crew" EntityType="Self.Crew" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Flights" EntityType="Self.Flights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AircraftM__aircr__05D8E0BE" Association="Self.FK__AircraftM__aircr__05D8E0BE">
+            <End Role="Aircraft" EntitySet="Aircraft" />
+            <End Role="AircraftMetrics" EntitySet="AircraftMetrics" />
+          </AssociationSet>
           <AssociationSet Name="FK__Crew__employee_i__5DCAEF64" Association="Self.FK__Crew__employee_i__5DCAEF64">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Crew" EntitySet="Crew" />
@@ -179,6 +222,12 @@
             <End Role="Flights" EntitySet="Flights" />
           </AssociationSet>
           <EntitySet Name="Users" EntityType="AirportDBModel.User" />
+          <EntitySet Name="Aircraft" EntityType="AirportDBModel.Aircraft" />
+          <EntitySet Name="AircraftMetrics" EntityType="AirportDBModel.AircraftMetric" />
+          <AssociationSet Name="FK__AircraftM__aircr__05D8E0BE" Association="AirportDBModel.FK__AircraftM__aircr__05D8E0BE">
+            <End Role="Aircraft" EntitySet="Aircraft" />
+            <End Role="AircraftMetric" EntitySet="AircraftMetrics" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -188,6 +237,45 @@
           <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Aircraft">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="registration_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="model" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="year_of_manufacture" Type="Int32" Nullable="false" />
+          <Property Name="passenger_capacity" Type="Int32" Nullable="false" />
+          <Property Name="cargo_capacity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="AircraftMetrics" Relationship="AirportDBModel.FK__AircraftM__aircr__05D8E0BE" FromRole="Aircraft" ToRole="AircraftMetric" />
+        </EntityType>
+        <EntityType Name="AircraftMetric">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aircraft_id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fuel_consumption" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="passenger_load" Type="Int32" Nullable="false" />
+          <Property Name="cargo_load" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="water_level" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="oil_level" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="technical_condition" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Aircraft" Relationship="AirportDBModel.FK__AircraftM__aircr__05D8E0BE" FromRole="AircraftMetric" ToRole="Aircraft" />
+        </EntityType>
+        <Association Name="FK__AircraftM__aircr__05D8E0BE">
+          <End Type="AirportDBModel.Aircraft" Role="Aircraft" Multiplicity="1" />
+          <End Type="AirportDBModel.AircraftMetric" Role="AircraftMetric" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aircraft">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AircraftMetric">
+              <PropertyRef Name="aircraft_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -243,6 +331,33 @@
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aircraft">
+            <EntityTypeMapping TypeName="AirportDBModel.Aircraft">
+              <MappingFragment StoreEntitySet="Aircraft">
+                <ScalarProperty Name="cargo_capacity" ColumnName="cargo_capacity" />
+                <ScalarProperty Name="passenger_capacity" ColumnName="passenger_capacity" />
+                <ScalarProperty Name="year_of_manufacture" ColumnName="year_of_manufacture" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="registration_number" ColumnName="registration_number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AircraftMetrics">
+            <EntityTypeMapping TypeName="AirportDBModel.AircraftMetric">
+              <MappingFragment StoreEntitySet="AircraftMetrics">
+                <ScalarProperty Name="technical_condition" ColumnName="technical_condition" />
+                <ScalarProperty Name="oil_level" ColumnName="oil_level" />
+                <ScalarProperty Name="water_level" ColumnName="water_level" />
+                <ScalarProperty Name="cargo_load" ColumnName="cargo_load" />
+                <ScalarProperty Name="passenger_load" ColumnName="passenger_load" />
+                <ScalarProperty Name="fuel_consumption" ColumnName="fuel_consumption" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="aircraft_id" ColumnName="aircraft_id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
